@@ -394,6 +394,7 @@ body {
 .grocery-form-body {
   font-family: Arial, sans-serif;
   background-color: #f7f7f7;
+  height: 85vh;
 }
 
 .grocery-form-body h1 {
