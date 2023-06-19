@@ -1,0 +1,243 @@
+body {
+    display: flex;
+    font-family: 'Convergence', 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121009;
+    flex-direction: column;
+    min-height: 100vh;
+    z-index: -10;
+  }
+
+  .video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+  }
+  
+  .video-background video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(50%);
+    
+  }
+
+  
+  nav {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 3.5rem;
+  }
+  
+  .navbar ul {
+    list-style-type: none;
+    margin-top: 2.8rem;
+    background-color: transparent;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .navbar ul:hover {
+    text-decoration: underline;
+  }
+  .reveal-text .buttons {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: reveal 1s forwards;
+  }
+  
+  @keyframes reveal {
+    0% {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .logo {
+    margin-right: auto;
+    padding-left: 15px;
+    background-color: transparent;
+  }
+  
+  .logo a {
+    color: #28DF99;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 15px;
+    font-size: 1.55rem;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+  }
+  
+  .buttons li {
+    margin-right: 10px;
+  }
+  
+  .buttons li:last-child {
+    margin-right: 0;
+  }
+  
+  .buttons li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .join-button {
+    margin-left: 20px;
+  }
+  
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    /* background-color: #5F8D4E; */
+    /* color: #fff; */
+    text-decoration: none;
+    background-color: transparent;
+  }
+  .navbar ul li .button {
+    position: relative;
+  }
+  
+  .navbar ul li .button::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: #fff;
+    transition: width 0.3s ease;
+  }
+  
+  .navbar ul li .button:hover::before {
+    width: 100%;
+  }
+  .content {
+    /* height:550px; */
+    text-align: center;
+    padding: 50px;
+    background-color: transparent;
+  }
+  
+  .content h1 {
+    font-size: 3.3rem;
+    margin-top: 50px;
+    color: #ffffff;
+    /* margin-bottom: 20px; */
+    font-family: 'Montserrat', Arial, sans-serif;
+  }
+  
+  .content p {
+    font-size: 2rem;
+    color: #28DF99;
+    /* margin : 40px 0; */
+    font-family: 'Convergence', Arial, sans-serif;
+    font-style: italic;
+  }
+  .highlight{
+    background-color: #002B5B;
+  }
+  .signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: -5px; */
+    margin-right: 2px;
+  }
+  
+  .signup-button {
+    display: block;
+    width: 355px;
+    /* height: 55px; */
+    background-color: #28DF99;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    line-height: 60px;
+    text-decoration: none;
+    border-radius: 45px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+  }
+
+  .signup-button:hover {
+    background-color: #24d390;
+  }
+
+  .join-button {
+    margin-right: 30px;
+  }
+  
+  .join-button a {
+    display: block;
+    width: 100px;
+    height: 34px;
+    background-color: #28DF99;
+    color: #002B5B;
+    font-size: 17px;
+    text-align: center;
+    line-height: 35px;
+    text-decoration: none;
+    border-radius: 45px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+  }
+
+  .join-button a:hover{
+    background-color: #24d390;
+  }
+  
+  /* .meet-heroes{
+    align-self: center;
+  }
+
+  .white-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    z-index: 9999;
+    display: none;
+  }
+  
+  .white-screen.active {
+    display: block;
+  } */
+
+  .footer{
+    /* position: relative;
+    bottom: -10px; */
+    margin-top:auto ;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    /* height:470px; */
+  }
+  
