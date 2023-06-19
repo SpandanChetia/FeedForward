@@ -1,18 +1,26 @@
 import "./App.css";
+import React from "react";
+import {Route,Routes} from 'react-router-dom';
+import { Stack } from "@mui/material";
 
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
-
-import { Stack } from "@mui/material";
-
+import Donation from "./pages/Donation";
+import Inventory from "./pages/Inventory";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
     <Stack minHeight={'100vh'}>
-      <Navbar />
-      <Home/>
-      <Footer />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/donation" element={<Donation/>} />
+          <Route path="/inventory" element={<Inventory/>}/>
+          <Route path="/signup" element={<SignUp/>}/>
+        </Routes>
+        <Footer />
     </Stack>
   );
 }

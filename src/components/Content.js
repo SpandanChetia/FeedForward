@@ -1,5 +1,6 @@
 import React from "react";
 import BCKVID from "../assets/backgroundVideo.mp4"
+import { Link } from "react-router-dom";
 
 
 const Content = () => {
@@ -24,9 +25,9 @@ const Content = () => {
         </span>
       </p>
       <div className="signup-container">
-        <a className="signup-button" href="#">
+        <Link className="signup-button" to='/signup'>
           <span className="highlight2">SIGN UP TO SAVE</span>
-        </a>
+        </Link>
       </div>
     </div>
     </>
