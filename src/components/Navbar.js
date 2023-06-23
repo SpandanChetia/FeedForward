@@ -39,8 +39,8 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link className="button" href="#">
-              Recipes
+            <Link className="button" to='/events'>
+              Events
             </Link>
           </li>
           <li>
