@@ -34,14 +34,11 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link className="button" href="#">
+            <Link className="button" to='/nourishinitiative'>
               Nourish Initiative
             </Link>
           </li>
           <li>
-            <Link className="button" to='/events'>
-              Events
-            </Link>
           </li>
           <li>
             <Link className="button" href="#">

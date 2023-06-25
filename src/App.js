@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 import Donation from "./pages/Donation";
 import Inventory from "./pages/Inventory";
 import SignUp from "./pages/SignUp";
-import { Events } from "./pages/Events";
+import NourishInitiative from "./pages/NourishInitiative";
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
           <Route path="/donation" element={<Donation/>} />
           <Route path="/inventory" element={<Inventory/>}/>
           <Route path="/signup" element={<SignUp/>}/>
-          <Route path="/events" element={<Events/>}></Route>
+          <Route path="/nourishinitiative" element={<NourishInitiative/>}></Route>
         </Routes>
         <Footer />
     </Stack>

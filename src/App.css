@@ -36,13 +36,13 @@ body {
   
   nav {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
   }
   
   .navbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+
     /* height: 3.5rem; */
   }
   
@@ -75,7 +75,6 @@ body {
   }
   
   .logo {
-    margin-right: auto;
     padding-left: 15px;
     background-color: transparent;
   }
@@ -517,58 +516,226 @@ button {
 
 
 /*Sign Up Page*/
+
+@import url("https://fonts.googleapis.com/css2?family=Convergence&display=swap");
 .signup-body {
-  background-color: #222;
-  color: #fff;
   font-family: Arial, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  background: linear-gradient(0deg, #ff7e5f, #feb47b);
   margin: 0;
+  padding: 0;
+  padding-bottom: 50px;
 }
 
-.signup-container{
-  text-align: center;
+::placeholder {
+  color: #999;
+  font-weight: bold;
+  font-size: 14px;
 }
 
-.signup-container h1 {
-  color: #00ff00;
-}
-
-.signup-container form {
+.description {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  width: 70vw;
+  margin-top: 1rem;
+}
+.description h1 {
+  font-size: 3rem;
+  color: #ffffff;
+}
+.description p {
+  text-align: center;
+  font-family: "Convergence", sans-serif;
+  font-style: italic;
+  color: #ffffff;
+  font-size: 25px;
+}
+.description .site-name {
+  color: #614385;
+  font-family: "Convergence", sans-serif;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  margin-top: 2rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 24%;
+  margin-left: 11.5rem;
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #7450a0;
+}
+.container .sign-upbtn {
+  background-color: #614385;
+  color: #ffffff;
+  border-color: transparent;
+  margin-top: 15px;
+  border-radius: 45px;
+  height: 2rem;
+  cursor: pointer;
+  box-shadow: 0 0 9px #a6a3a3;
+}
+.container .form-group {
+  position: relative;
   margin-bottom: 20px;
 }
-
-.signup-container input {
-  padding: 15px;
-  margin-bottom: 15px;
+.container .form-group input {
+  width: 100%;
+  padding: 10px 0px;
   border-radius: 5px;
-  border: none;
+  border: 1.05px solid #ccc;
+  font-family: "Open Sans", sans-serif;
   font-size: 16px;
+  line-height: 1.3;
+  transition: border-color 0.3s ease;
+  padding-left: 2.1%;
+}
+.container .form-group input:focus {
+  border-color: #614385;
+  outline: none;
+}
+.container .form-group i {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #777;
+}
+.container .form-group:nth-child(1) i, .container .form-group:nth-child(2) i, .container .form-group:nth-child(3) i, .container .form-group:nth-child(4) i {
+  font-size: 18px;
+}
+.container .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #999;
+}
+.container .bullet-points ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.container .bullet-points li {
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  color: #555;
+}
+.container .bullet-points li:before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #ff7e5f;
+  font-size: 14px;
 }
 
-.signup-container button {
-  padding: 15px 25px;
-  background-color: #00ff00;
-  border: none;
-  color: #222;
+.container2 {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 24%;
+  margin-right: 11.5rem;
+  background-color: #ffffff;
   border-radius: 5px;
+  padding: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.container2 h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #7450a0;
+}
+.container2 .sign-upbtn {
+  background-color: #614385;
+  color: #ffffff;
+  border-color: transparent;
+  margin-top: 15px;
+  border-radius: 45px;
+  height: 2rem;
   cursor: pointer;
+  box-shadow: 0 0 9px #818986;
+}
+.container2 .form-group2 {
+  position: relative;
+  margin-bottom: 20px;
+}
+.container2 .form-group2 input {
+  width: 100%;
+  padding: 10px 0px;
+  border-radius: 5px;
+  border: 1.05px solid #ccc;
+  font-family: "Open Sans", sans-serif;
   font-size: 16px;
+  line-height: 1.3;
+  padding-left: 2.1%;
+}
+.container2 .form-group2 input:focus {
+  border-color: #614385;
+  outline: none;
+}
+.container2 .form-group2 i {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #777;
+}
+.container2 .form-group2:nth-child(1) i, .container2 .form-group2:nth-child(2) i, .container2 .form-group2:nth-child(3) i, .container2 .form-group2:nth-child(4) i {
+  font-size: 18px;
+}
+.container2 .form-group2 label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #999;
+}
+.container2 .bullet-points2 ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.container2 .bullet-points2 li {
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  color: #555;
+}
+.container2 .bullet-points2 li:before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #ff7e5f;
+  font-size: 14px;
 }
 
-.signup-container button:hover {
-  background-color: #33ff33;
-}
 
-#google-signin-container {
-  margin-top: 20px;
-}
-
-
+/*# sourceMappingURL=styles.css.map */
 
 
 /*Event Component Cards*/

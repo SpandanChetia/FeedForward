@@ -1,112 +1,205 @@
 import React, { useState } from "react";
-import { Stack } from "@mui/material";
+import axios from "axios";
 
 const SignUp = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [householdName, setHouseholdName] = useState("");
+  const [householdEmail, setHouseholdEmail] = useState("");
+  const [householdPassword, setHouseholdPassword] = useState("");
+  const [householdPhone, setHouseholdPhone] = useState("");
 
-  const handleSubmit = (e) => {
+  const [businessName, setBusinessName] = useState("");
+  const [businessEmail, setBusinessEmail] = useState("");
+  const [businessPassword, setBusinessPassword] = useState("");
+  const [businessPhone, setBusinessPhone] = useState("");
+
+  const handleHouseholdSignUp = async (e) => {
     e.preventDefault();
-
-    // Perform form submission or validation logic here
-    // You can use the entered username, email, and password values
-
-    // Example: Logging the entered values
-    console.log("Username:", username);
-    console.log("Email:", email);
-    console.log("Password:", password);
+    const userData = {
+      name: householdName,
+      email: householdEmail,
+      password: householdPassword,
+      phone: householdPhone,
+      userType: "household"
+    };
+    
+    try {
+        const response = await axios.post("http://localhost:5000/signup", userData);
+        const data = response.data;
+        console.log(data); // Handle the response as needed
+      } catch (error) {
+        console.log(error); // Handle the error
+      }
   };
 
-  const onSuccess = (googleUser) => {
-    const profile = googleUser.getBasicProfile();
-    const idToken = googleUser.getAuthResponse().id_token;
+  const handleBusinessSignUp = async (e) => {
+    e.preventDefault();
+    const businessData = {
+      name: businessName,
+      email: businessEmail,
+      password: businessPassword,
+      phone: businessPhone,
+      userType: "business"
+    };
 
-    // Send the user's ID token to your server for verification and further processing
-    // You can use AJAX or fetch to send the token to your server-side endpoint
-
-    // Example using fetch:
-    fetch("/verifyToken", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ idToken: idToken }),
-    })
-      .then(function (response) {
-        if (response.ok) {
-          // User successfully signed up
-          console.log("Signed up successfully!");
-        } else {
-          // Error occurred during sign-up
-          console.log("Sign-up failed:", response.statusText);
-        }
-      })
-      .catch(function (error) {
-        console.log("Error occurred during sign-up:", error);
-      });
-  };
-
-  const onFailure = (error) => {
-    console.log("Sign-up failed:", error);
-  };
-
-  const renderButton = () => {
-    window.gapi.load("auth2", function () {
-      window.gapi.auth2
-        .init({
-          client_id: "YOUR_CLIENT_ID",
-        })
-        .then(function () {
-          window.gapi.signin2.render("google-signin-container", {
-            scope: "profile email",
-            width: 200,
-            height: 40,
-            longtitle: true,
-            theme: "dark",
-            onsuccess: onSuccess,
-            onfailure: onFailure,
-          });
-        })
-        .catch(function (error) {
-          console.log("Google sign-in initialization failed:", error);
-        });
-    });
+    try {
+        const response = await axios.post("http://localhost:5000/signup", businessData);
+        const data = response.data;
+        console.log(data); // Handle the response as needed
+      } catch (error) {
+        console.log(error); // Handle the error
+      }
   };
 
   return (
     <div className="signup-body">
-      <Stack className="signup-container">
-        <h1>Sign Up</h1>
-        <form id="signup-form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            id="username"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-          <input
-            type="email"
-            id="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            id="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button type="submit">Sign Up</button>
-        </form>
-        <div id="google-signin-container"></div>
-      </Stack>
+      <div className="wrapper">
+        <div className="description">
+          <h1>
+            Make a difference with{" "}
+            <span className="site-name">fEEDfORWARD</span>
+          </h1>
+          <p>
+            Sign up below to join our community and unlock a world of
+            possibilities. <br />
+            Fill out the form and let's get started on this journey together
+          </p>
+        </div>
+      </div>
+      <div className="form-wrapper">
+        <div className="container">
+          <h1>As a Household</h1>
+          <form method="POST">
+            <div className="form-group">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Username"
+                value={householdName}
+                onChange={e => setHouseholdName(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email ID"
+                value={householdEmail}
+                onChange={e => setHouseholdEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Create Password"
+                value={householdPassword}
+                onChange={e => setHouseholdPassword(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Phone Number"
+                value={householdPhone}
+                onChange={e => setHouseholdPhone(e.target.value)}
+                required
+              />
+            </div>
+          </form>
+          <div className="bullet-points">
+            <ul>
+              <li>Full Access to our Algorithms</li>
+              <li>Unlimited Donations</li>
+              <li>Easily Track Food Waste</li>
+              <li>Reduce Costs with Analysis</li>
+              <li>Minimize Carbon Emissions</li>
+              <li>Help the Unprivileged</li>
+            </ul>
+          </div>
+          <button
+            type="button"
+            className="sign-upbtn"
+            onClick={handleHouseholdSignUp}
+          >
+            SIGN UP
+          </button>
+        </div>
+        <div className="container2">
+          <h1>As a Business</h1>
+          <form method="POST">
+            <div className="form-group2">
+              <input
+                type="text"
+                id="name2"
+                name="name2"
+                placeholder="Name of the Business"
+                value={businessName}
+                onChange={e => setBusinessName(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group2">
+              <input
+                type="email"
+                id="email2"
+                name="email2"
+                placeholder="Business Email ID"
+                value={businessEmail}
+                onChange={e => setBusinessEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group2">
+              <input
+                type="password"
+                id="password2"
+                name="password2"
+                placeholder="Create Password"
+                value={businessPassword}
+                onChange={e => setBusinessPassword(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group2">
+              <input
+                type="tel"
+                id="phone2"
+                name="phone2"
+                placeholder="Contact Number"
+                value={businessPhone}
+                onChange={e => setBusinessPhone(e.target.value)}
+                required
+              />
+            </div>
+          </form>
+          <div className="bullet-points2">
+            <ul>
+              <li>Full Access to our Algorithms</li>
+              <li>Unlimited Donations</li>
+              <li>Cost Reductions & Higher Profit Margins</li>
+              <li>Better Tax Implications</li>
+              <li>Gain Competitive Advantage</li>
+              <li>Minimize Carbon Emissions</li>
+              <li>Help the Unprivileged</li>
+            </ul>
+          </div>
+          <button
+            type="button"
+            className="sign-upbtn"
+            onClick={handleBusinessSignUp}
+          >
+            SIGN UP
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
