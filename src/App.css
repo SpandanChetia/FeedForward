@@ -562,6 +562,43 @@ button {
   flex-direction: column;
   align-items: center;
 }
+.message{
+/*SignUp message*/
+padding: 8px;
+text-align: center;
+font-size: 17px;
+line-height: 30px;
+font-weight: 700;
+margin: 0 auto;
+width: 300px;
+max-width: calc(100vw - 48px);
+transform-origin: center bottom;
+transition: all 150ms ease-in-out 0s;
+border-radius: 12px;
+transform: translate3d(0px, 0px, 0px) scale(1);
+opacity: 1;
+}
+.success{
+  color: rgb(0, 104, 74);
+  border: 1px solid rgb(192, 250, 230);
+  box-shadow: rgba(6, 22, 30, 0.2) 0px 18px 18px -15px;
+  background-color: rgb(227, 252, 247);
+}
+
+.error{
+  color: rgb(104, 0, 0);
+  border: 1px solid rgb(250, 192, 192);
+  box-shadow: rgba(30, 18, 6, 0.2) 0px 18px 18px -15px;
+  background-color: rgb(252, 227, 227);
+}
+
+
+
+
+
+
+
+
 
 .form-wrapper {
   display: flex;
@@ -735,7 +772,6 @@ button {
 }
 
 
-/*# sourceMappingURL=styles.css.map */
 
 
 /*Event Component Cards*/

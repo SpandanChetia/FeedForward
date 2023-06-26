@@ -12,6 +12,9 @@ const SignUp = () => {
   const [businessPassword, setBusinessPassword] = useState("");
   const [businessPhone, setBusinessPhone] = useState("");
 
+  const [signUpMessage, setSignUpMessage] = useState("");
+
+
   const handleHouseholdSignUp = async (e) => {
     e.preventDefault();
     const userData = {
@@ -25,8 +28,14 @@ const SignUp = () => {
     try {
         const response = await axios.post("http://localhost:5000/signup", userData);
         const data = response.data;
+        setSignUpMessage("User Account Created Successfully");
         console.log(data); // Handle the response as needed
       } catch (error) {
+        if (error.response && error.response.data.error) {
+          setSignUpMessage(error.response.data.error);
+        } else {
+          setSignUpMessage("Something went wrong");
+        }
         console.log(error); // Handle the error
       }
   };
@@ -44,8 +53,14 @@ const SignUp = () => {
     try {
         const response = await axios.post("http://localhost:5000/signup", businessData);
         const data = response.data;
+        setSignUpMessage("User Account Created Successfully");
         console.log(data); // Handle the response as needed
       } catch (error) {
+        if (error.response && error.response.data.error) {
+          setSignUpMessage(error.response.data.error);
+        } else {
+          setSignUpMessage("Something went wrong");
+        }
         console.log(error); // Handle the error
       }
   };
@@ -65,6 +80,9 @@ const SignUp = () => {
           </p>
         </div>
       </div>
+      {signUpMessage && <p className={`message ${signUpMessage ? (signUpMessage === "User Account Created Successfully" ? "success" : "error") : ""}`}>
+        {signUpMessage}
+      </p>}
       <div className="form-wrapper">
         <div className="container">
           <h1>As a Household</h1>

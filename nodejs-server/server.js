@@ -37,7 +37,7 @@ mongoose
 // Create a schema and model for the user
 const userSchema = new mongoose.Schema({
   name: String,
-  email: String,
+  email: {type:String,unique:true},
   password: String,
   phone: String,
   userType: String // "household" or "business"
@@ -48,6 +48,13 @@ const User = mongoose.model("User", userSchema);
 // Define a route to handle form submissions
 app.post("/signup", (req, res) => {
   const { name, email, password, phone, userType } = req.body;
+  
+  
+  if (!name || !email || !password || !phone || !userType) {
+    return res.status(400).json({ error: "Missing required fields" });
+  }
+
+
 
   // Create a new user instance
   const newUser = new User({
@@ -65,8 +72,13 @@ app.post("/signup", (req, res) => {
       res.json(user);
     })
     .catch(err => {
-      console.log(err);
-      res.status(500).json({ error: "Failed to save user" });
+      if (err.code === 11000) {
+        // Duplicate key error (email already exists)
+        res.status(400).json({ error: "Email already exists" });
+      } else {
+        console.log(err);
+        res.status(500).json({ error: "Failed to save user" });
+      }
     });
 });
 
