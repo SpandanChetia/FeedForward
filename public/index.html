@@ -30,6 +30,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=pk.eyJ1Ijoic3BhbmRhbnAiLCJhIjoiY2xqOW5odXp6MG9oaTNnbzJiaTdxNHV2ZiJ9.jNAlcrvUOFDW7373IdibFQ&libraries=places"></script>
   <title>Feed Forward</title>
 </head>
 
@@ -46,6 +47,48 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      // Function to initialize the map and enable auto-complete functionality
+      function initializeMap() {
+          const input = document.getElementById('location');
+          const autocomplete = new google.maps.places.Autocomplete(input);
+  
+          autocomplete.addListener('place_changed', function () {
+              const place = autocomplete.getPlace();
+              if (!place.geometry) {
+                  window.alert("No details available for input: '" + place.name + "'");
+                  return;
+              }
+  
+              // Fill the auto-filled address and city inputs
+              document.getElementById('auto-address').value = place.formatted_address;
+              document.getElementById('auto-city').value = extractCityFromAddress(place);
+          });
+  
+          // Create the map and center it on a default location
+          const map = new google.maps.Map(document.getElementById('map'), {
+              center: { lat: 37.7749, lng: -122.4194 },
+              zoom: 12
+          });
+  
+          // Set the map to listen for changes in the autocomplete input
+          autocomplete.bindTo('bounds', map);
+      }
+  
+      // Helper function to extract the city from the place address
+      function extractCityFromAddress(place) {
+          for (const component of place.address_components) {
+              if (component.types.includes('locality')) {
+                  return component.long_name;
+              }
+          }
+          return '';
+      }
+  
+      // Call the initializeMap function when the page finishes loading
+      window.onload = initializeMap;
+  </script>
+  
 </body>
 
 </html>
