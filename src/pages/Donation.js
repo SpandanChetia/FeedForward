@@ -54,7 +54,7 @@ const Donation = () => {
           <h1>Donate Food</h1>
           <form>
             <div className="name-id">
-              <input type="text" id="name" name="name" placeholder="Username or Business Name" required />
+              <input type="text" id="name" name="name" placeholder="Name or Business Name" required />
             </div>
             <div className="password">
               <input type="password" id="password" name="password" placeholder="Password" required />
@@ -63,10 +63,10 @@ const Donation = () => {
               <input type="number" id="amount" name="amount" placeholder="Estimated Amount" required />
             </div>
             <div className="location">
-              <input type="text" id="location" name="location" placeholder="Auto-filled Address" required />
+              <input type="text" id="location" name="location" placeholder="Address" required />
             </div>
             <div className="city">
-              <input type="text" id="auto-city" name="auto-city" placeholder="Auto-filled City" required />
+              <input type="text" id="auto-city" name="auto-city" placeholder="City" required />
             </div>
           </form>
           <button type="button" className="donate-btn">DONATE</button>

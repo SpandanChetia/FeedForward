@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+
 
 const SignUp = () => {
   const [householdName, setHouseholdName] = useState("");
@@ -13,6 +16,8 @@ const SignUp = () => {
   const [businessPhone, setBusinessPhone] = useState("");
 
   const [signUpMessage, setSignUpMessage] = useState("");
+  const [countdown, setCountdown] = useState(10);
+  const navigate = useNavigate();
 
 
   const handleHouseholdSignUp = async (e) => {
@@ -30,6 +35,16 @@ const SignUp = () => {
         const data = response.data;
         setSignUpMessage("User Account Created Successfully");
         console.log(data); // Handle the response as needed
+        let timer = setInterval(() => {
+          setCountdown((prevCountdown) => prevCountdown - 1);
+        }, 1000);
+
+        setTimeout(() => {
+          clearInterval(timer);
+          navigate("/donation"); // Replace "/login" with the actual route to your login page
+        }, 10000);
+
+
       } catch (error) {
         if (error.response && error.response.data.error) {
           setSignUpMessage(error.response.data.error);
@@ -55,6 +70,15 @@ const SignUp = () => {
         const data = response.data;
         setSignUpMessage("User Account Created Successfully");
         console.log(data); // Handle the response as needed
+        let timer = setInterval(() => {
+          setCountdown((prevCountdown) => prevCountdown - 1);
+        }, 1000);
+        setTimeout(() => {
+          clearInterval(timer);
+          navigate("/donation"); // Replace "/login" with the actual route to your login page
+        }, 10000);
+
+
       } catch (error) {
         if (error.response && error.response.data.error) {
           setSignUpMessage(error.response.data.error);
@@ -83,6 +107,11 @@ const SignUp = () => {
       {signUpMessage && <p className={`message ${signUpMessage ? (signUpMessage === "User Account Created Successfully" ? "success" : "error") : ""}`}>
         {signUpMessage}
       </p>}
+      {signUpMessage && countdown > 0 && (
+        <p className="countdown-timer">
+          Redirecting in <span className="timer">{countdown}</span> seconds...
+        </p>
+      )}
       <div className="form-wrapper">
         <div className="container">
           <h1>As a Household</h1>

@@ -600,8 +600,19 @@ opacity: 1;
 }
 
 
-
-
+/*Countdown Timer*/
+.countdown-timer{
+  margin: 0 auto;
+  text-align: center;
+  color: #ffffff;
+  letter-spacing: 0.05in;
+}
+.timer{
+  font-size: 25px;
+  font-weight: 800;
+  color: #7450a0;
+  letter-spacing: normal;
+}
 
 
 
