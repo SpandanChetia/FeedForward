@@ -59,6 +59,7 @@ body {
 
   .reveal-text .buttons {
     opacity: 0;
+    font-size: 1.15rem;
     transform: translateY(50px);
     animation: reveal 1s forwards;
   }
@@ -75,12 +76,12 @@ body {
   }
   
   .logo {
-    padding-left: 15px;
+    padding-left: 25px;
     background-color: transparent;
   }
   
   .logo a {
-    color: #28DF99;
+    color: #ff7e5f;
     font-weight: bold;
     text-decoration: none;
     margin-top: 15px;
@@ -108,6 +109,7 @@ body {
   
   .join-button {
     margin-left: 20px;
+    font-family: 'Montserrat', Arial, sans-serif;
   }
   
   .button {
@@ -153,22 +155,22 @@ body {
   }
   
   .content h1 {
-    font-size: 3.3rem;
-    margin-top: 50px;
+    font-size: 4rem;
+    margin-top: 42px;
     color: #ffffff;
     /* margin-bottom: 20px; */
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: 'Convergence', Arial, sans-serif;
   }
   
   .content p {
     font-size: 2rem;
-    color: #28DF99;
+    color: #ff7e5f;/* #ff7e5f;*/
     /* margin : 40px 0; */
     font-family: 'Convergence', Arial, sans-serif;
     font-style: italic;
   }
   .highlight{
-    background-color: #002B5B;
+    background-color: #ffffff;
   }
   .signup-container {
     display: flex;
@@ -182,7 +184,7 @@ body {
     display: block;
     width: 355px;
     /* height: 55px; */
-    background-color: #28DF99;
+    background: linear-gradient(0deg, #ff7e5f 5%, #feb47b);
     font-family: 'Montserrat', sans-serif;
     color: #fff;
     font-size: 24px;
@@ -196,7 +198,7 @@ body {
   }
 
   .signup-button:hover {
-    background-color: #24d390;
+    background-color: #fd714d;
   }
 
   .join-button {
@@ -207,20 +209,20 @@ body {
     display: block;
     width: 100px;
     height: 34px;
-    background-color: #28DF99;
-    color: #002B5B;
+    background: linear-gradient(0deg, #614385, #605195);
+    color: #ffffff;
     font-size: 17px;
     text-align: center;
     line-height: 35px;
     text-decoration: none;
     border-radius: 45px;
     border: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
     margin-top: 30px;
   }
 
   .join-button a:hover{
-    background-color: #24d390;
+    background-color: #fd714d;
   }
   
   /* .meet-heroes{
@@ -284,8 +286,8 @@ body {
   margin-top: 14px;
 }
 .head-description h1 {
-  font-family: "Montserrat";
-  font-size: 44px;
+  font-family: "Arial";
+  font-size: 3.2rem;
   font-weight: bold;
   font-style: normal;
   color: #ffffff;
@@ -293,13 +295,13 @@ body {
 .head-description .site-name {
   color: #614385;
   font-family: "Convergence";
-  font-size: 44px;
+  font-size: 3.3rem;
   font-weight: bold;
   font-style: normal;
 }
 .head-description p {
-  font-family: "Montserrat";
-  font-size: 1.5rem;
+  font-family: "Convergence";
+  font-size: 1.6rem;
   font-weight: normal;
   font-style: italic;
   color: #614385;
@@ -338,7 +340,7 @@ body {
   margin-top: 10px;
 }
 .main-container .donateform-container .donate-btn {
-  background-color: #614385;
+  background: linear-gradient(0deg, #614385, #605195);
   color: white;
   border-color: transparent;
   margin-top: 15px;
@@ -397,19 +399,32 @@ body {
 
 
 /*Inventory*/
+
 .grocery-form-body {
+  background: linear-gradient(0deg, #ff7e5f, #feb47b 50%);
   font-family: Arial, sans-serif;
   background-color: #f7f7f7;
   height: 85vh;
 }
 
-.grocery-form-body h1 {
+.inventory-heading {
+  background: linear-gradient(90deg, #614385, #605195);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Convergence', Arial, sans-serif;
+  font-size: 2rem;
   text-align: center;
   padding: 20px 0;
 }
-
+.inventory{
+  font-family: 'Convergence', Arial, sans-serif;
+}
 .grocery-form-container {
   max-width: 650px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: 0 auto;
   background-color: #fff;
   padding: 20px;
@@ -425,7 +440,7 @@ body {
 
 .grocery-form-container th,
 td {
-  padding: 10px;
+  padding: 0.9rem;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
@@ -446,7 +461,7 @@ button {
 }
 
 .grocery-form-container button {
-  background-color: #4CAF50;
+  background: linear-gradient(0deg, #614385, #605195);
   color: white;
   border: none;
   cursor: pointer;
@@ -782,6 +797,17 @@ opacity: 1;
 
 
 /*Event Component Cards*/
+body{
+  background: linear-gradient(0deg, #ff7e5f, #feb47b 50%);
+}
+
+.Month-name{
+  background: linear-gradient(to right, #614385, #605195);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /*text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);*/
+  /*text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+}
 
 .card-container {
   display: grid;
@@ -842,7 +868,7 @@ opacity: 1;
 }
 
 .card_title {
-  color: #131313;
+  color: #614385;
   line-height: 15px;
 }
 
