@@ -29,11 +29,13 @@ const NourishInitiative = () => {
           fontFamily: "Pathway Extreme, sans-serif",
         }}
       >
+        <div class="Month-name">
         June
+        </div>
       </Typography>
       <div className="card-container">
         <Card
-          title="This is a Title"
+          title="4th June Weekly Meal"
           subtitle="This is a subtitle of this page. Let us see how it looks on the Web."
           description="Lorem ipsum dolor, sit amet expedita exercitationem recusandae aut dolor tempora aperiam itaque possimus at, cupiditate earum, quae repudiandae aspernatur? Labore minus soluta consequatur placeat."
         />
@@ -48,7 +50,7 @@ const NourishInitiative = () => {
           description="Lorem ipsum dolor, sit amet expedita exercitationem recusandae aut dolor tempora aperiam itaque possimus at, cupiditate earum, quae repudiandae aspernatur? Labore minus soluta consequatur placeat."
         />
         <Card
-          title="This is a Title"
+          title="Grand Feast Sunday"
           subtitle="This is a subtitle of this page. Let us see how it looks on the Web."
           description="Lorem ipsum dolor, sit amet expedita exercitationem recusandae aut dolor tempora aperiam itaque possimus at, cupiditate earum, quae repudiandae aspernatur? Labore minus soluta consequatur placeat."
         />
@@ -67,7 +69,9 @@ const NourishInitiative = () => {
           fontFamily: "Pathway Extreme, sans-serif",
         }}
       >
+        <div class="Month-name">
         July
+        </div>
       </Typography>
       <div className="card-container">
         <Card
@@ -105,7 +109,9 @@ const NourishInitiative = () => {
           fontFamily: "Pathway Extreme, sans-serif",
         }}
       >
+        <div class="Month-name">
         August
+        </div>
       </Typography>
       <div className="card-container">
         <Card
@@ -144,7 +150,9 @@ const NourishInitiative = () => {
           fontFamily: "Pathway Extreme, sans-serif",
         }}
       >
+        <div class="Month-name">
         September
+        </div>
       </Typography>
       <div className="card-container">
         <Card
@@ -182,7 +190,9 @@ const NourishInitiative = () => {
           fontFamily: "Pathway Extreme, sans-serif",
         }}
       >
+        <div class="Month-name">
         October
+        </div>
       </Typography>
       <div className="card-container">
         <Card
@@ -220,7 +230,9 @@ const NourishInitiative = () => {
           fontFamily: "Pathway Extreme, sans-serif",
         }}
       >
+        <div class="Month-name">
         November
+        </div>
       </Typography>
       <div className="card-container">
         <Card
@@ -258,7 +270,9 @@ const NourishInitiative = () => {
           fontFamily: "Pathway Extreme, sans-serif",
         }}
       >
+        <div class="Month-name">
         December
+        </div>
       </Typography>
       <div className="card-container">
         <Card

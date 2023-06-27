@@ -47,11 +47,13 @@ const Donation = () => {
     <div className='donation-body'>
       <div className="head-description">
         <h1>Donate Food with <span className="site-name">fEEDfORWARD</span></h1>
-        <p>"Food donation is not just about filling empty stomachs; it's about nourishing hope, feeding compassion, and cultivating a brighter future for all."</p>
+        <p>"Food donation is not just about filling empty stomachs; it's about nourishing hope, 
+        <br />
+          feeding compassion, and cultivating a brighter future for all."</p>
       </div>
       <div className="main-container">
         <div className="donateform-container">
-          <h1>Donate Food</h1>
+          <h1>DONATE FOOD</h1>
           <form>
             <div className="name-id">
               <input type="text" id="name" name="name" placeholder="Username or Business Name" required />
