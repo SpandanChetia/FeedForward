@@ -1,9 +1,12 @@
-import React from "react";
+import {React,useContext,useState} from "react";
 import BCKVID from "../assets/backgroundVideo.mp4"
 import { Link } from "react-router-dom";
-
+ import { AuthContext } from "../AuthContext";
 
 const Content = () => {
+   const {loggedIn}=useContext(AuthContext);
+  
+  
   return (
     <>
     <div className="video-background">
@@ -24,11 +27,16 @@ const Content = () => {
           food donation, empower communities, and foster sustainable solutions.
         </span>
       </p>
-      <div className="signup-container">
-        <Link className="signup-button" to='/signup'>
-          <span className="highlight2">SIGN UP TO SAVE</span>
-        </Link>
-      </div>
+      {loggedIn ? (
+          <div className="logged-in-text">
+            <p>Welcome....</p>
+          </div>
+        ) : (
+          <div className="signup-container">
+            <Link className="signup-button" to="/signup">
+              <span className="highlight2">SIGN UP TO SAVE</span>
+            </Link>
+          </div>)};
     </div>
     </>
   );

@@ -198,6 +198,12 @@ body {
   .signup-button:hover {
     background-color: #24d390;
   }
+  .logged-in-text{
+    text-transform: uppercase;
+    font-style:normal !important;
+    font-size: 25px;
+  }
+
 
   .join-button {
     margin-right: 30px;
@@ -1048,3 +1054,17 @@ theme-btn {
 
 
 
+/*ECO Progress*/
+.ECOChart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #ffffff;
+}
+
+.chart-container {
+  width: 400px;
+  height: 300px;
+  margin: 0 10px;
+}

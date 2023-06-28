@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from 'react-router-dom';
 
+import { AuthContext } from "../AuthContext";
+
 const Navbar = () => {
+
+  const {loggedIn,handleLogout}=useContext(AuthContext);
+  
+
   return (
     <nav className="navbar">
       <div className="logo">
@@ -41,17 +47,24 @@ const Navbar = () => {
           <li>
           </li>
           <li>
-            <Link className="button" href="#">
+            <Link className="button" to="/ecopro">
               Eco-Progress
             </Link>
           </li>
         </ul>
       </div>
-      <div className="join-button">
+      {loggedIn ? (<div className="join-button">
+      <Link className="join-button button" to='/' onClick={handleLogout}>
+        LOG OUT        
+    </Link>
+    </div>):(
+        <div className="join-button">
         <Link className="join-button button" to='/login'>
           LOG IN        
       </Link>
       </div>
+      )}
+      
     </nav>
   );
 };

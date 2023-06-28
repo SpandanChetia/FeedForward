@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+
+import { AuthContext } from "../AuthContext";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,6 +13,10 @@ const Login = () => {
   const [loginMessage, setloginMessage] = useState("");
   const [countdown, setCountdown] = useState(5);
   const navigate = useNavigate();
+
+
+  const {handleLoginSuccess}=useContext(AuthContext);
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -31,6 +38,7 @@ const Login = () => {
       // Store the token in local storage or state for future authenticated requests
       setloginMessage("Login Successfully");
       // Redirect to the home page or any other desired page
+      handleLoginSuccess();
       let timer = setInterval(() => {
         setCountdown((prevCountdown) => prevCountdown - 1);
       }, 1000);
@@ -38,7 +46,7 @@ const Login = () => {
       setTimeout(() => {
         clearInterval(timer);
         navigate("/");
-      }, 10000);
+      }, 5000);
     } catch (error) {
       if (error.response && error.response.data.error) {
         setloginMessage(error.response.data.error);
