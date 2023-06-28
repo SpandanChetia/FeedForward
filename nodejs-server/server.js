@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // MongoDB configuration
-const mongoURI = "mongodb://127.0.0.1:27017/feedforward";
+const mongoURI = "mongodb+srv://feedforward:feedforward2025@feedforwardcluster.wonmvxi.mongodb.net/feedforward?retryWrites=true&w=majority";
 mongoose
   .connect(mongoURI, {
     useNewUrlParser: true,
