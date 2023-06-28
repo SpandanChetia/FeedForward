@@ -89,7 +89,9 @@ const Inventory = () => {
 
   return (
     <div  className="grocery-form-body">
-      <h1>Grocery Form</h1>
+      <div className="inventory-heading">
+        <h1>YOUR <span className="inventory">INVENTORY</span></h1>
+      </div>
       <div className="grocery-form-container">
         <form id="grocery-form">
           <input type="text" id="item-name" placeholder="Item Name" required />
