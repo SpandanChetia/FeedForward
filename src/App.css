@@ -415,8 +415,8 @@ body {
 
 .inventory-heading {
   background: linear-gradient(90deg, #614385, #605195);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  --webkit-background-clip: text;
+  --webkit-text-fill-color: transparent;
   font-family: 'Convergence', Arial, sans-serif;
   font-size: 2rem;
   text-align: center;
@@ -821,9 +821,9 @@ body{
 }
 
 .Month-name{
-  background: linear-gradient(to right, #614385, #605195);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  /* background: linear-gradient(to right, #614385, #605195); */
+  --webkit-background-clip: text;
+  --webkit-text-fill-color: transparent;
   /*text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);*/
   /*text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
 }
