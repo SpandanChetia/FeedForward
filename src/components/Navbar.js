@@ -48,9 +48,9 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="join-button">
-        <a className="button" href="/">
-          LOG IN
-        </a>
+        <Link className="join-button button" to='/login'>
+          LOG IN        
+      </Link>
       </div>
     </nav>
   );

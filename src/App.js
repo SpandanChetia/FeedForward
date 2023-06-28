@@ -10,6 +10,7 @@ import Donation from "./pages/Donation";
 import Inventory from "./pages/Inventory";
 import SignUp from "./pages/SignUp";
 import NourishInitiative from "./pages/NourishInitiative";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/inventory" element={<Inventory/>}/>
           <Route path="/signup" element={<SignUp/>}/>
           <Route path="/nourishinitiative" element={<NourishInitiative/>}></Route>
+          <Route path="/login" element={<Login/>}></Route>
         </Routes>
         <Footer />
     </Stack>
