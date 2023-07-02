@@ -25,12 +25,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Convergence&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pathway+Extreme:wght@700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pathway+Extreme:wght@700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-EnVUSi51qcwAQGZf3QRMLBl4hdAjjwA&libraries=places"></script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-EnVUSi51qcwAQGZf3QRMLBl4hdAjjwA&libraries=places"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <title>Feed Forward</title>
 </head>
@@ -48,7 +52,38 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <script>
+
+  <!-- <script>
+    // Function to initialize the map and enable auto-fill functionality
+    function initializeMap() {
+        const map = L.map('map').setView([37.7749, -122.4194], 12); // Set the initial map view
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+            maxZoom: 18,
+        }).addTo(map);
+
+        const marker = L.marker([37.7749, -122.4194], { draggable: true }).addTo(map); // Add a draggable marker
+
+        // Update the address and city inputs when the marker is dragged
+        marker.on('dragend', function (event) {
+            const latlng = event.target.getLatLng();
+
+            // Perform reverse geocoding to get the address based on marker's location
+            fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latlng.lat}&lon=${latlng.lng}&format=json`)
+                .then((response) => response.json())
+                .then((data) => {
+                    document.getElementById('location').value = data.display_name;
+                    document.getElementById('city').value = data.address.city || '';
+                });
+        });
+    }
+
+    // Call the initializeMap function when the page finishes loading
+    window.onload = initializeMap;
+</script>  -->
+
+  <!-- <script>
       // Function to initialize the map and enable auto-complete functionality
       function initializeMap() {
           const input = document.getElementById('location');
@@ -88,8 +123,8 @@
   
       // Call the initializeMap function when the page finishes loading
       window.onload = initializeMap;
-  </script>
-  
+  </script> -->
+
 </body>
 
 </html>

@@ -19,17 +19,20 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // MongoDB configuration
-const mongoURI = "mongodb+srv://feedforward:feedforward2025@feedforwardcluster.wonmvxi.mongodb.net/feedforward?retryWrites=true&w=majority";
+const mongoURI = "mongodb://127.0.0.1:27017/feedforward";
 mongoose
   .connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("MongoDB connected"))
+  .then(() => console.log("FeedForward Account DB connected"))
   .catch((err) => {
-    console.error("MongoDB connection error:", err);
+    console.error("FeedForward Account DB connection error:", err);
     process.exit(1); // Terminate the server on connection error
   });
+
+ 
+
 
 // Create a schema and model for the user
 const userSchema = new mongoose.Schema({
@@ -115,5 +118,132 @@ app.post("/login", (req, res) => {
     .catch((err) => {
       console.error(err);
       res.status(500).json({ error: err.message });
+    });
+});
+
+
+
+
+
+
+
+/*Donation Server*/
+
+// Create a schema and model for the donation in the donation database
+const donationSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  amount: Number,
+  location: String,
+  city: String,
+});
+
+const Donation = mongoose.model("Donation", donationSchema);
+
+
+// Define a route to handle form submissions for donation
+app.post("/donate", (req, res) => {
+  const { name, email, amount, location, city } = req.body;
+
+  if (!name || !email || !amount || !location || !city) {
+    return res.status(400).json({ error: "Missing required donation data fields" });
+  }
+
+  // Create a new donation instance
+  const newDonation = new Donation({
+    name,
+    email,
+    amount,
+    location,
+    city,
+  });
+
+  // Save the donation to the donation database
+  newDonation
+    .save()
+    .then((donation) => {
+      res.json(donation);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: "Failed to save donation" });
+    });
+});
+
+
+
+
+/*Inventory Page */
+
+// Create a schema and model for the inventory item
+const inventorySchema = new mongoose.Schema({
+  itemName: String,
+  itemQuantity: Number,
+  itemCost: Number,
+  itemExpiryDate: Date,
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+});
+
+const InventoryItem = mongoose.model("InventoryItem", inventorySchema);
+
+// Define a middleware function to verify the token
+const verifyToken = (req, res, next) => {
+  const token = req.headers.authorization;
+
+  if (!token) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  jwt.verify(token, "78f15b5705f3cd8d8c39ec495b9ac2f6637bf215eaf3dbf02e9f7549320a483b", (err, decodedToken) => {
+    if (err) {
+      return res.status(401).json({ error: "Invalid token" });
+    }
+
+    req.userId = decodedToken.userId;
+    next();
+  });
+};
+
+
+
+// Define a route to handle form submissions for adding an item to the inventory
+app.post("/inventory", verifyToken, (req, res) => {
+  const { itemName, itemQuantity, itemCost, itemExpiryDate } = req.body;
+  const userId = req.userId;
+
+  if (!itemName || !itemQuantity || !itemCost || !itemExpiryDate) {
+    return res.status(400).json({ error: "Missing required fields" });
+  }
+
+  const newInventoryItem = new InventoryItem({
+    itemName,
+    itemQuantity,
+    itemCost,
+    itemExpiryDate,
+    user: userId,
+  });
+
+  newInventoryItem
+    .save()
+    .then((item) => {
+      res.json(item);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: "Failed to add item to inventory" });
+    });
+});
+
+// Define a route to fetch inventory items for a specific user
+app.get("/inventory", verifyToken, (req, res) => {
+  const userId = req.userId;
+
+  InventoryItem.find({ user: userId })
+    .then((items) => {
+      res.json(items);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: "Failed to fetch inventory items" });
     });
 });

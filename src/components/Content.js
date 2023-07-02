@@ -1,26 +1,56 @@
-import {React,useContext,useState} from "react";
+import {React,useContext,useEffect} from "react";
 import BCKVID from "../assets/backgroundVideo.mp4"
 import { Link } from "react-router-dom";
  import { AuthContext } from "../AuthContext";
 
 const Content = () => {
    const {loggedIn}=useContext(AuthContext);
-  
+  //  useEffect(() => {
+  //   const btn = document.querySelector(`.${styles.btn}`);
+
+  //   const handleMouseMove = (e) => {
+  //     const x = e.clientX;
+  //     const y = e.clientY;
+
+  //     btn.style.transform = `translate(${x}px, ${y}px)`;
+  //   };
+
+  //   const handleMouseLeave = () => {
+  //     btn.style.transform = 'translate(0, 0)';
+  //   };
+
+  //   document.addEventListener('mousemove', handleMouseMove);
+  //   document.addEventListener('mouseleave', handleMouseLeave);
+
+  //   return () => {
+  //     document.removeEventListener('mousemove', handleMouseMove);
+  //     document.removeEventListener('mouseleave', handleMouseLeave);
+  //   };
+  // }, []);
+
+
   
   return (
     <>
+    
     <div className="video-background">
       <video autoPlay loop muted>
         <source src={BCKVID} type="video/mp4"/>
       </video>
     </div>
     <div className="content">
-      <h1>
-        Reduce Food Waste
-        <br />
-        One Meal at a Time
+    <h1>
+        <div className="main-heading">
+          <div className = "head-sentence1">
+          <span className="quote">" </span>
+            <span className = "reduce">Reduce</span> <span className = "food-waste">Food Waste</span>
+          </div>
+          <div className = "head-sentence2"> 
+            One Meal at a Time<span className="quote"> ! "</span>
+          </div>
+        </div>
       </h1>
-      <p>
+      <p className = "paragraph">
         <span className="highlight">
           Feed Forward's technology allows businesses & people to revolutionize{" "}
           <br />

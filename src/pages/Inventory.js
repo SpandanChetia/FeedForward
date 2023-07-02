@@ -1,139 +1,153 @@
-import {React,useEffect} from "react";
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import { AuthContext } from "../AuthContext";
 
 const Inventory = () => {
+  const { loggedIn } = useContext(AuthContext);
+  const [itemName, setItemName] = useState("");
+  const [itemQuantity, setItemQuantity] = useState("");
+  const [itemCost, setItemCost] = useState("");
+  const [itemExpiryDate, setItemExpiryDate] = useState("");
+  const [inventoryData, setInventoryData] = useState([]);
 
-    useEffect(() => {
-        var serialNumber = 1;
-        var modal = document.querySelector('#modal-dialog');
-        var closeModal = document.querySelector('.close');
-        var proceedButton = document.querySelector('#proceed-button');
-        var cancelButton = document.querySelector('#cancel-button');
-      
-        closeModal.onclick = function() {
-          modal.style.display = 'none';
-        };
-      
-        proceedButton.onclick = function() {
-          modal.style.display = 'none';
-          // Handle logic for adding item to grocery list state
-        };
-      
-        cancelButton.onclick = function() {
-          modal.style.display = 'none';
-          // No need for additional logic in this case
-        };
-      
-        document.getElementById('grocery-form').addEventListener('submit', function(event) {
-          event.preventDefault();
-          var itemName = document.getElementById('item-name').value;
-          var itemQuantity = document.getElementById('item-quantity').value;
-          var itemCost = document.getElementById('item-cost').value;
-          var expiryDate = document.getElementById('expiry-date').value;
-          console.log('Item Name:', itemName);
-          console.log('Quantity:', itemQuantity);
-          console.log('Total Cost:', itemCost);
-          console.log('Expiry Date:', expiryDate);
-          document.getElementById('grocery-form').reset();
-      
-          var groceryTable = document.getElementById('grocery-list').getElementsByTagName('tbody')[0];
-      
-          var itemExists = false;
-          var rows = groceryTable.getElementsByTagName('tr');
-          for (var i = 0; i < rows.length; i++) {
-            var row = rows[i];
-            var nameCell = row.cells[1];
-            if (nameCell.textContent === itemName) {
-              itemExists = true;
-              break;
-            }
-          }
-      
-          if (itemExists) {
-            modal.style.display = 'block';
-          } else {
-            addItemToGroceryList(itemName, itemQuantity, itemCost, expiryDate);
-          }
-        });
-      
-        function addItemToGroceryList(itemName, itemQuantity, itemCost, expiryDate) {
-          var groceryTable = document.getElementById('grocery-list').getElementsByTagName('tbody')[0];
-          var newRow = groceryTable.insertRow();
-          var serialNumberCell = newRow.insertCell();
-          var itemNameCell = newRow.insertCell();
-          var itemQuantityCell = newRow.insertCell();
-          var itemCostCell = newRow.insertCell();
-          var expiryDateCell = newRow.insertCell();
-          var consumedCell = newRow.insertCell();
-          serialNumberCell.textContent = serialNumber++;
-          itemNameCell.textContent = itemName;
-          itemQuantityCell.textContent = itemQuantity;
-          itemCostCell.textContent = itemCost;
-          expiryDateCell.textContent = expiryDate;
-          consumedCell.innerHTML = '<input type="checkbox">';
-      
-          var expiryDateObj = new Date(expiryDate);
-          var currentDate = new Date();
-          var daysDifference = Math.floor((expiryDateObj - currentDate) / (1000 * 60 * 60 * 24));
-      
-          if (daysDifference <= 0) {
-            newRow.classList.add('expiry-red');
-          } else if (daysDifference <= 14) {
-            newRow.classList.add('expiry-yellow');
-          }
-          
-          // Handle logic for adding item to grocery list state
+  useEffect(() => {
+    if (loggedIn) {
+      fetchInventoryData();
+    }
+  }, [loggedIn]);
+
+  const fetchInventoryData = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found");
+      }
+
+      const response = await axios.get("http://localhost:5000/inventory", {
+        headers: {
+          Authorization: token,
+        },
+      });
+
+      const data = response.data;
+      setInventoryData(data);
+    } catch (error) {
+      console.log("Error fetching inventory data:", error);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const inventoryData = {
+      itemName,
+      itemQuantity,
+      itemCost,
+      itemExpiryDate,
+    };
+
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found");
+      }
+
+      const response = await axios.post(
+        "http://localhost:5000/inventory",
+        inventoryData,
+        {
+          headers: {
+            Authorization: token,
+          },
         }
-      }, []);
-      
+      );
 
+      console.log("Item added successfully:", response.data);
+
+      // Clear the form fields
+      setItemName("");
+      setItemQuantity("");
+      setItemCost("");
+      setItemExpiryDate("");
+    } catch (error) {
+      console.error("Error adding item:", error);
+    }
+  };
 
   return (
-    <div  className="grocery-form-body">
-      <div className="inventory-heading">
-        <h1>YOUR <span className="inventory">INVENTORY</span></h1>
-      </div>
-      <div className="grocery-form-container">
-        <form id="grocery-form">
-          <input type="text" id="item-name" placeholder="Item Name" required />
-          <input
-            type="number"
-            id="item-quantity"
-            placeholder="Quantity"
-            required
-          />
-          <input type="text" id="item-cost" placeholder="Total Cost" required />
-          <input type="date" id="expiry-date" required />
-          <button type="submit">Add Item</button>
-        </form>
-        <table id="grocery-list">
-          <thead>
-            <tr>
-              <th>Serial No.</th>
-              <th>Item Name</th>
-              <th>Quantity</th>
-              <th>Total Cost</th>
-              <th>Expiry Date</th>
-              <th>Consumed</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
+    <div className="grocery-form-body">
+      {loggedIn ? (
+        <div>
+          <div className="inventory-heading">
+            <h1>
+              YOUR <span className="inventory">INVENTORY</span>
+            </h1>
+          </div>
+          <div className="grocery-form-container">
+            <form onSubmit={handleSubmit}>
+              
+                <input
+                  type="text"
+                  value={itemName}
+                  placeholder="Item Name"
+                  onChange={(e) => setItemName(e.target.value)}
+                />
+              
+              
+              
+                <input
+                  type="number"
+                  value={itemQuantity}
+                  placeholder="Item Quantity"
+                  onChange={(e) => setItemQuantity(e.target.value)}
+                />
+              
+              
+                <input
+                  type="number"
+                  value={itemCost}
+                  placeholder="Item Cost"
+                  onChange={(e) => setItemCost(e.target.value)}
+                />
+              
+              <label>
+                Item Expiry Date:
+                <input
+                  type="date"
+                  value={itemExpiryDate}
+                  onChange={(e) => setItemExpiryDate(e.target.value)}
+                />
+              </label>
+              <br />
+              <button type="submit">Add Item</button>
+            </form>
 
-      <div id="modal-dialog" className="modal">
-        <div className="modal-content">
-          <span className="close">&times;</span>
-          <p>This item is already in the list and has not been consumed yet.</p>
-          <div className="button-container">
-            <button id="proceed-button" className="proceed-button">
-              Proceed
-            </button>
-            <button id="cancel-button" className="cancel-button">
-              Cancel
-            </button>
+            {/* <h2>Inventory Table</h2> */}
+            <table>
+              <thead>
+                <tr>
+                  <th>Item Name</th>
+                  <th>Item Quantity</th>
+                  <th>Item Cost</th>
+                  <th>Item Expiry Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {inventoryData.map((item) => (
+                  <tr key={item._id}>
+                    <td>{item.itemName}</td>
+                    <td>{item.itemQuantity}</td>
+                    <td>{item.itemCost}</td>
+                    <td>{item.itemExpiryDate}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
-      </div>
+      ) : (
+        <p>Please log in to view the inventory.</p>
+      )}
     </div>
   );
 };

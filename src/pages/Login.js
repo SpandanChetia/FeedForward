@@ -16,7 +16,7 @@ const Login = () => {
 
 
   const {handleLoginSuccess}=useContext(AuthContext);
-
+ 
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -36,6 +36,9 @@ const Login = () => {
       // Assuming login was successful and received a token in the response
       const token = data.token;
       // Store the token in local storage or state for future authenticated requests
+      localStorage.setItem("token", token);
+
+
       setloginMessage("Login Successfully");
       // Redirect to the home page or any other desired page
       handleLoginSuccess();
