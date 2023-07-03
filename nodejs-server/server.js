@@ -31,9 +31,6 @@ mongoose
     process.exit(1); // Terminate the server on connection error
   });
 
- 
-
-
 // Create a schema and model for the user
 const userSchema = new mongoose.Schema({
   name: String,
@@ -52,38 +49,38 @@ app.post("/signup", (req, res) => {
   if (!name || !email || !password || !phone || !userType) {
     return res.status(400).json({ error: "Missing required fields" });
   }
+
   bcrypt.hash(password, 10, (err, hashedPassword) => {
     if (err) {
       console.error("Failed to hash password:", err);
       return res.status(500).json({ error: "Failed to save user" });
     }
-  
 
-  // Create a new user instance
-  const newUser = new User({
-    name,
-    email,
-    password:hashedPassword,
-    phone,
-    userType,
-  });
-
-  // Save the user to the database
-  newUser
-    .save()
-    .then((user) => {
-      res.json(user);
-    })
-    .catch((err) => {
-      if (err.code === 11000) {
-        // Duplicate key error (email already exists)
-        res.status(400).json({ error: "Email already exists" });
-      } else {
-        console.log(err);
-        res.status(500).json({ error: "Failed to save user" });
-      }
+    // Create a new user instance
+    const newUser = new User({
+      name,
+      email,
+      password: hashedPassword,
+      phone,
+      userType,
     });
-});
+
+    // Save the user to the database
+    newUser
+      .save()
+      .then((user) => {
+        res.json(user);
+      })
+      .catch((err) => {
+        if (err.code === 11000) {
+          // Duplicate key error (email already exists)
+          res.status(400).json({ error: "Email already exists" });
+        } else {
+          console.log(err);
+          res.status(500).json({ error: "Failed to save user" });
+        }
+      });
+  });
 });
 
 // Define a route to handle form submissions for login
@@ -105,7 +102,6 @@ app.post("/login", (req, res) => {
       bcrypt.compare(password, user.password).then((passwordMatch) => {
         if (!passwordMatch) {
           return res.status(401).json({ error: "Invalid email or password" });
-          
         }
 
         // Create and sign a JWT token
@@ -121,12 +117,6 @@ app.post("/login", (req, res) => {
     });
 });
 
-
-
-
-
-
-
 /*Donation Server*/
 
 // Create a schema and model for the donation in the donation database
@@ -139,7 +129,6 @@ const donationSchema = new mongoose.Schema({
 });
 
 const Donation = mongoose.model("Donation", donationSchema);
-
 
 // Define a route to handle form submissions for donation
 app.post("/donate", (req, res) => {
@@ -170,9 +159,6 @@ app.post("/donate", (req, res) => {
     });
 });
 
-
-
-
 /*Inventory Page */
 
 // Create a schema and model for the inventory item
@@ -180,8 +166,10 @@ const inventorySchema = new mongoose.Schema({
   itemName: String,
   itemQuantity: Number,
   itemCost: Number,
+  itemPurchaseDate:Date,
   itemExpiryDate: Date,
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  consumed: { type: Boolean, default: false },
 });
 
 const InventoryItem = mongoose.model("InventoryItem", inventorySchema);
@@ -204,14 +192,12 @@ const verifyToken = (req, res, next) => {
   });
 };
 
-
-
 // Define a route to handle form submissions for adding an item to the inventory
 app.post("/inventory", verifyToken, (req, res) => {
-  const { itemName, itemQuantity, itemCost, itemExpiryDate } = req.body;
+  const { itemName, itemQuantity, itemCost,itemPurchaseDate ,itemExpiryDate } = req.body;
   const userId = req.userId;
 
-  if (!itemName || !itemQuantity || !itemCost || !itemExpiryDate) {
+  if (!itemName || !itemQuantity || !itemCost || !itemPurchaseDate || !itemExpiryDate) {
     return res.status(400).json({ error: "Missing required fields" });
   }
 
@@ -219,6 +205,7 @@ app.post("/inventory", verifyToken, (req, res) => {
     itemName,
     itemQuantity,
     itemCost,
+    itemPurchaseDate,
     itemExpiryDate,
     user: userId,
   });
@@ -245,5 +232,35 @@ app.get("/inventory", verifyToken, (req, res) => {
     .catch((err) => {
       console.log(err);
       res.status(500).json({ error: "Failed to fetch inventory items" });
+    });
+});
+
+// Define a route to toggle the consumed status of an inventory item
+app.put("/inventory/:id", verifyToken, (req, res) => {
+  const itemId = req.params.id;
+  const userId = req.userId;
+
+  InventoryItem.findOne({ _id: itemId, user: userId })
+    .then((item) => {
+      if (!item) {
+        return res.status(404).json({ error: "Inventory item not found" });
+      }
+
+      // Toggle the consumed status
+      item.consumed = !item.consumed;
+
+      item
+        .save()
+        .then((updatedItem) => {
+          res.json(updatedItem);
+        })
+        .catch((err) => {
+          console.log(err);
+          res.status(500).json({ error: "Failed to update inventory item" });
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: "Failed to find inventory item" });
     });
 });

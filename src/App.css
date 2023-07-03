@@ -582,7 +582,9 @@ button {
 .tick-cell {
   text-align: center;
 }
-
+.expiry-green {
+  background-color: #ccffd6;
+}
 .expiry-yellow {
   background-color: #ffffcc;
 }

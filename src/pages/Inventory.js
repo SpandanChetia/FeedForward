@@ -8,6 +8,7 @@ const Inventory = () => {
   const [itemName, setItemName] = useState("");
   const [itemQuantity, setItemQuantity] = useState("");
   const [itemCost, setItemCost] = useState("");
+  const [itemPurchaseDate, setItemPurchaseDate] = useState("");
   const [itemExpiryDate, setItemExpiryDate] = useState("");
   const [inventoryData, setInventoryData] = useState([]);
 
@@ -39,7 +40,7 @@ const Inventory = () => {
 
   const calculateExpiryDays = (expiryDate) => {
     const currentDate = new Date();
-    const diffTime = (expiryDate - currentDate);
+    const diffTime = expiryDate - currentDate;
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     return diffDays;
   };
@@ -50,7 +51,7 @@ const Inventory = () => {
     } else if (expiryDays <= 14) {
       return "expiry-yellow";
     } else {
-      return "";
+      return "expiry-green";
     }
   };
 
@@ -61,7 +62,9 @@ const Inventory = () => {
       itemName,
       itemQuantity,
       itemCost,
+      itemPurchaseDate,
       itemExpiryDate,
+      consumed: false, // Set initial consumed status to false
     };
 
     try {
@@ -86,9 +89,33 @@ const Inventory = () => {
       setItemName("");
       setItemQuantity("");
       setItemCost("");
+      setItemPurchaseDate("");
       setItemExpiryDate("");
     } catch (error) {
       console.error("Error adding item:", error);
+    }
+  };
+
+  const handleConsumedToggle = async (itemId, consumed) => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found");
+      }
+
+      const response = await axios.put(
+        `http://localhost:5000/inventory/${itemId}`,
+        { consumed },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+      fetchInventoryData();
+      console.log("Consumed status updated successfully:", response.data);
+    } catch (error) {
+      console.error("Error updating consumed status:", error);
     }
   };
 
@@ -112,7 +139,7 @@ const Inventory = () => {
               <input
                 type="number"
                 value={itemQuantity}
-                placeholder="Item Quantity"
+                placeholder="Item Quantity (in g)"
                 onChange={(e) => setItemQuantity(e.target.value)}
               />
               <input
@@ -121,6 +148,14 @@ const Inventory = () => {
                 placeholder="Item Cost"
                 onChange={(e) => setItemCost(e.target.value)}
               />
+              <label>
+                Item Purchase Date:
+                <input
+                  type="date"
+                  value={itemPurchaseDate}
+                  onChange={(e) => setItemPurchaseDate(e.target.value)}
+                />
+              </label>
               <label>
                 Item Expiry Date:
                 <input
@@ -139,7 +174,9 @@ const Inventory = () => {
                   <th>Item Name</th>
                   <th>Item Quantity</th>
                   <th>Item Cost</th>
+                  <th>Item Purchase Date</th>
                   <th>Item Expiry Date</th>
+                  <th>Consumed</th>
                 </tr>
               </thead>
               <tbody>
@@ -153,7 +190,17 @@ const Inventory = () => {
                       <td>{item.itemName}</td>
                       <td>{item.itemQuantity}</td>
                       <td>{item.itemCost}</td>
-                      <td>{item.itemExpiryDate}</td>
+                      <td>{new Date(item.itemPurchaseDate).toLocaleDateString()}</td>
+                      <td>{new Date(item.itemExpiryDate).toLocaleDateString()}</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={item.consumed}
+                          onChange={() =>
+                            handleConsumedToggle(item._id, !item.consumed)
+                          }
+                        />
+                      </td>
                     </tr>
                   );
                 })}
@@ -162,7 +209,15 @@ const Inventory = () => {
           </div>
         </div>
       ) : (
-        <Typography sx={{ textAlign: "center", fontSize: "30px", fontWeight: "700", color: "darkSalmon", mt: "50px" }}>
+        <Typography
+          sx={{
+            textAlign: "center",
+            fontSize: "30px",
+            fontWeight: "700",
+            color: "darkSalmon",
+            mt: "50px",
+          }}
+        >
           Please log in to view the inventory.
         </Typography>
       )}
