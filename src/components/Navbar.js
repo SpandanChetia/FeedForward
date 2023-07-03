@@ -20,7 +20,8 @@ const Navbar = () => {
       <div className="reveal-text">
         <ul className="buttons">
           <li>
-            <Link className="button" href="#">
+            
+            <Link className="button" href="#problems">
               The Problem
             </Link>
           </li>
@@ -43,8 +44,6 @@ const Navbar = () => {
             <Link className="button" to='/nourishinitiative'>
               Nourish Initiative
             </Link>
-          </li>
-          <li>
           </li>
           <li>
             <Link className="button" to="/ecopro">

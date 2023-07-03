@@ -1,7 +1,7 @@
 import "./App.css";
 import React from "react";
 import {Route,Routes} from 'react-router-dom';
-import { Stack } from "@mui/material";
+
 
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -14,16 +14,18 @@ import Login from "./pages/Login";
 
 import {AuthProvider} from './AuthContext';
 import ECOProgress from "./pages/ECOProgress";
+import Problems from "./components/Problems";
 
 
 
 function App() {
   return (
     <AuthProvider>
-    <Stack minHeight={'100vh'}>
+    
         <Navbar />
         <Routes>
           <Route path="/" element={<Home/>} />
+          
           <Route path="/donation" element={<Donation/>} />
           <Route path="/inventory" element={<Inventory/>}/>
           <Route path="/signup" element={<SignUp/>}/>
@@ -32,7 +34,7 @@ function App() {
           <Route path="/ecopro" element={<ECOProgress/>}></Route>
         </Routes>
         <Footer />
-    </Stack></AuthProvider>
+    </AuthProvider>
   );
 }
 

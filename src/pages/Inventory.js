@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../AuthContext";
+import { Typography } from "@mui/material";
 
 const Inventory = () => {
   const { loggedIn } = useContext(AuthContext);
@@ -36,9 +37,26 @@ const Inventory = () => {
     }
   };
 
+  const calculateExpiryDays = (expiryDate) => {
+    const currentDate = new Date();
+    const diffTime = (expiryDate - currentDate);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
+  };
+
+  const getRowClassName = (expiryDays) => {
+    if (expiryDays <= 0) {
+      return "expiry-red";
+    } else if (expiryDays <= 14) {
+      return "expiry-yellow";
+    } else {
+      return "";
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    fetchInventoryData();
     const inventoryData = {
       itemName,
       itemQuantity,
@@ -85,31 +103,24 @@ const Inventory = () => {
           </div>
           <div className="grocery-form-container">
             <form onSubmit={handleSubmit}>
-              
-                <input
-                  type="text"
-                  value={itemName}
-                  placeholder="Item Name"
-                  onChange={(e) => setItemName(e.target.value)}
-                />
-              
-              
-              
-                <input
-                  type="number"
-                  value={itemQuantity}
-                  placeholder="Item Quantity"
-                  onChange={(e) => setItemQuantity(e.target.value)}
-                />
-              
-              
-                <input
-                  type="number"
-                  value={itemCost}
-                  placeholder="Item Cost"
-                  onChange={(e) => setItemCost(e.target.value)}
-                />
-              
+              <input
+                type="text"
+                value={itemName}
+                placeholder="Item Name"
+                onChange={(e) => setItemName(e.target.value)}
+              />
+              <input
+                type="number"
+                value={itemQuantity}
+                placeholder="Item Quantity"
+                onChange={(e) => setItemQuantity(e.target.value)}
+              />
+              <input
+                type="number"
+                value={itemCost}
+                placeholder="Item Cost"
+                onChange={(e) => setItemCost(e.target.value)}
+              />
               <label>
                 Item Expiry Date:
                 <input
@@ -122,7 +133,6 @@ const Inventory = () => {
               <button type="submit">Add Item</button>
             </form>
 
-            {/* <h2>Inventory Table</h2> */}
             <table>
               <thead>
                 <tr>
@@ -133,20 +143,28 @@ const Inventory = () => {
                 </tr>
               </thead>
               <tbody>
-                {inventoryData.map((item) => (
-                  <tr key={item._id}>
-                    <td>{item.itemName}</td>
-                    <td>{item.itemQuantity}</td>
-                    <td>{item.itemCost}</td>
-                    <td>{item.itemExpiryDate}</td>
-                  </tr>
-                ))}
+                {inventoryData.map((item) => {
+                  const expiryDate = new Date(item.itemExpiryDate);
+                  const expiryDays = calculateExpiryDays(expiryDate);
+                  const rowClassName = getRowClassName(expiryDays);
+
+                  return (
+                    <tr key={item._id} className={rowClassName}>
+                      <td>{item.itemName}</td>
+                      <td>{item.itemQuantity}</td>
+                      <td>{item.itemCost}</td>
+                      <td>{item.itemExpiryDate}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
         </div>
       ) : (
-        <p>Please log in to view the inventory.</p>
+        <Typography sx={{ textAlign: "center", fontSize: "30px", fontWeight: "700", color: "darkSalmon", mt: "50px" }}>
+          Please log in to view the inventory.
+        </Typography>
       )}
     </div>
   );

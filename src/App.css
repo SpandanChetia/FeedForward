@@ -5,9 +5,9 @@ body {
     padding: 0;
     background-color: #121009;
     flex-direction: column;
-    min-height: 100vh;
+    
     z-index: -10;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
   }
 
 /*Video Section*/
@@ -24,11 +24,11 @@ body {
   }
 
   .video-background {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 80vh;
     z-index: -2;
     overflow: hidden;
   }
@@ -501,7 +501,8 @@ body {
   /* background: linear-gradient(0deg, #ff7e5f, #feb47b 50%); */
   font-family: Arial, sans-serif;
   background-color: #f7f7f7;
-  height: 85vh;
+  padding-bottom: 150px;
+  /* height: 100vh; */
 }
 
 .inventory-heading {
