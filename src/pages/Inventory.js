@@ -30,7 +30,7 @@ const Inventory = () => {
           Authorization: token,
         },
       });
-
+ 
       const data = response.data;
       setInventoryData(data);
     } catch (error) {

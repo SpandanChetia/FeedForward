@@ -4,18 +4,18 @@ import { AuthContext } from "../AuthContext";
 import { Typography } from "@mui/material";
 import { Bar } from "react-chartjs-2";
 
-const MonthlySpending = () => {
+const MonthlyQuantity = () => {
   const { loggedIn } = useContext(AuthContext);
-  const [monthlySpending, setMonthlySpending] = useState([]);
+  const [monthlyQuantity, setMonthlyQuantity] = useState([]);
   const MONTHS=["JANUARY","FEBRUAURY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
 
   useEffect(() => {
     if (loggedIn) {
-      fetchMonthlySpending();
+      fetchMonthlyQuantity();
     }
   }, [loggedIn]);
 
-  const fetchMonthlySpending = async () => {
+  const fetchMonthlyQuantity = async () => {
     try {
       const token = localStorage.getItem("token");
       if (!token) {
@@ -30,46 +30,46 @@ const MonthlySpending = () => {
 
       const data = response.data;
 
-      // Calculate monthly spending
-      const spendingByMonth = {};
+      // Calculate monthly quantity
+      const QuantityByMonth = {};
       data.forEach((item) => {
         const month = new Date(item.itemPurchaseDate).getMonth();
-        const cost = item.itemCost;
-        if (spendingByMonth[month]) {
-          spendingByMonth[month] += cost;
+        const quantity = item.itemQuantity;
+        if (QuantityByMonth[month]) {
+            QuantityByMonth[month] += quantity;
         } else {
-          spendingByMonth[month] = cost;
+            QuantityByMonth[month] = quantity;
         }
       });
 
-      setMonthlySpending(spendingByMonth);
+      setMonthlyQuantity(QuantityByMonth);
     } catch (error) {
-      console.log("Error fetching monthly spending:", error);
+      console.log("Error fetching monthly quantity:", error);
     }
   };
 
   const chartData = {
-    labels: Object.keys(monthlySpending).map((month) => `${MONTHS[parseInt(month)]}`),
+    labels: Object.keys(monthlyQuantity).map((month) => `${MONTHS[parseInt(month)]}`),
     datasets: [
       {
-        label: "Total Spending",
-        data: Object.values(monthlySpending),
+        label: "Total Quantity Purchased",
+        data: Object.values(monthlyQuantity),
         backgroundColor: "rgba(75, 192, 192, 0.6)",
       },
     ],
   };
 
   return (
-    <div className="monthly-spending-container">
+    <div className="monthly-Quantity-container">
       {loggedIn ? (
         <div>
-          <div className="monthly-spending-heading">
+          <div className="monthly-Quantity-heading">
             <h1>
-              YOUR <span className="spending">MONTHLY SPENDING</span>
+              YOUR <span className="spending">MONTHLY QUANTITY PURCHASED</span>
             </h1>
           </div>
-          {Object.keys(monthlySpending).length > 0 ? (
-            <div className="monthly-spending-chart">
+          {Object.keys(monthlyQuantity).length > 0 ? (
+            <div className="monthly-quantity-chart">
               <Bar data={chartData} />
             </div>
           ) : (
@@ -81,7 +81,7 @@ const MonthlySpending = () => {
                 mt: "20px",
               }}
             >
-              No data available for monthly spending.
+              No data available for monthly quantity purchased.
             </Typography>
           )}
         </div>
@@ -95,11 +95,11 @@ const MonthlySpending = () => {
             mt: "50px",
           }}
         >
-          Please log in to view the monthly spending.
+          Please log in to view the monthly quantity purchased.
         </Typography>
       )}
     </div>
   );
 };
 
-export default MonthlySpending;
+export default MonthlyQuantity;

@@ -14,7 +14,7 @@ import Login from "./pages/Login";
 
 import {AuthProvider} from './AuthContext';
 import ECOProgress from "./pages/ECOProgress";
-import Problems from "./components/Problems";
+// import Problems from "./components/Problems";
 
 
 

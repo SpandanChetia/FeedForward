@@ -31,6 +31,32 @@ mongoose
     process.exit(1); // Terminate the server on connection error
   });
 
+
+// Define a middleware function to verify the token
+const verifyToken = (req, res, next) => {
+  const token = req.headers.authorization;
+
+  if (!token) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  jwt.verify(token, "78f15b5705f3cd8d8c39ec495b9ac2f6637bf215eaf3dbf02e9f7549320a483b", (err, decodedToken) => {
+    if (err) {
+      return res.status(401).json({ error: "Invalid token" });
+    }
+
+    req.userId = decodedToken.userId;
+    next();
+  });
+};
+
+
+
+
+
+
+
+
 // Create a schema and model for the user
 const userSchema = new mongoose.Schema({
   name: String,
@@ -83,6 +109,10 @@ app.post("/signup", (req, res) => {
   });
 });
 
+
+
+
+
 // Define a route to handle form submissions for login
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
@@ -117,13 +147,27 @@ app.post("/login", (req, res) => {
     });
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
 /*Donation Server*/
 
 // Create a schema and model for the donation in the donation database
 const donationSchema = new mongoose.Schema({
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   name: String,
   email: String,
   amount: Number,
+  donationDate:Date,
   location: String,
   city: String,
 });
@@ -131,18 +175,20 @@ const donationSchema = new mongoose.Schema({
 const Donation = mongoose.model("Donation", donationSchema);
 
 // Define a route to handle form submissions for donation
-app.post("/donate", (req, res) => {
-  const { name, email, amount, location, city } = req.body;
-
-  if (!name || !email || !amount || !location || !city) {
+app.post("/donate",verifyToken, (req, res) => {
+  const { name, email, amount,donationDate, location, city } = req.body;
+  const userId = req.userId;
+  if (!name || !email || !amount || !donationDate || !location || !city) {
     return res.status(400).json({ error: "Missing required donation data fields" });
   }
 
   // Create a new donation instance
   const newDonation = new Donation({
+    user: userId,
     name,
     email,
     amount,
+    donationDate,
     location,
     city,
   });
@@ -159,6 +205,34 @@ app.post("/donate", (req, res) => {
     });
 });
 
+app.get("/donation", verifyToken, (req, res) => {
+  const userId = req.userId;
+
+  Donation.find({ user: userId })
+    .then((items) => {
+      res.json(items);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: "Failed to fetch donation datas" });
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*Inventory Page */
 
 // Create a schema and model for the inventory item
@@ -174,23 +248,6 @@ const inventorySchema = new mongoose.Schema({
 
 const InventoryItem = mongoose.model("InventoryItem", inventorySchema);
 
-// Define a middleware function to verify the token
-const verifyToken = (req, res, next) => {
-  const token = req.headers.authorization;
-
-  if (!token) {
-    return res.status(401).json({ error: "Unauthorized" });
-  }
-
-  jwt.verify(token, "78f15b5705f3cd8d8c39ec495b9ac2f6637bf215eaf3dbf02e9f7549320a483b", (err, decodedToken) => {
-    if (err) {
-      return res.status(401).json({ error: "Invalid token" });
-    }
-
-    req.userId = decodedToken.userId;
-    next();
-  });
-};
 
 // Define a route to handle form submissions for adding an item to the inventory
 app.post("/inventory", verifyToken, (req, res) => {

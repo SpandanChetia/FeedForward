@@ -1,4 +1,4 @@
-import {React,useContext,useEffect} from "react";
+import {React,useContext} from "react";
 import BCKVID from "../assets/backgroundVideo.mp4"
 import { Link } from "react-router-dom";
  import { AuthContext } from "../AuthContext";

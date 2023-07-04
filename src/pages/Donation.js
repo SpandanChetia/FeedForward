@@ -10,6 +10,7 @@ const Donation = () => {
     name: "",
     email: "",
     amount: "",
+    donationDate:new Date(),
     location: "",
     city: ""
   });
@@ -20,9 +21,21 @@ const Donation = () => {
     // Make an API request to submit the donation data
     e.preventDefault();
     try{
-      const response=await axios.post("http://localhost:5000/donate",donationData);
+      const token=localStorage.getItem("token");
+      if(!token)
+      {
+        throw new Error("No token found");
+      }
+      const response=await axios.post("http://localhost:5000/donate",
+      donationData,
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+      );
       const data=response.data;
-      console.log(data);
+      // console.log(data);
       setDonationMessage("Donation Made Successfully");
     }catch(error){
       if (error.response && error.response.data.error) {

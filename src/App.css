@@ -519,22 +519,26 @@ body {
   font-family: 'Convergence', Arial, sans-serif;
 }
 .grocery-form-container {
-  max-width: 650px;
+  /* max-width: 650px; */
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
-  margin: 0 auto;
-  background-color: #fff;
+  /* background: none; */
+  
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 0 100px 2.5px #550dad;
+  /* box-shadow: 0 0 100px 2.5px #550dad; */
 }
 
 .grocery-form-container table {
-  width: 100%;
-  border-collapse: collapse;
+  width: 30%;
+  /* border-collapse: collapse; */
   margin-bottom: 20px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 100px 2.5px #550dad;
 }
 
 .grocery-form-container th,
@@ -545,7 +549,12 @@ td {
 }
 
 .grocery-form-container form {
+  padding: 10px;
+  border-radius: 10px;
   margin-bottom: 20px;
+  width: 30%;
+  background-color: #fff;
+  box-shadow: 0 0 100px 2.5px #550dad;
 }
 
 .grocery-form-container input[type="text"],
