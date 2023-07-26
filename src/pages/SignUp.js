@@ -43,9 +43,9 @@ const SignUp = () => {
         "http://localhost:5000/signup",
         userData
       );
-      const data = response.data;
+      
       setSignUpMessage("User Account Created Successfully");
-      console.log(data); // Handle the response as needed
+      
       let timer = setInterval(() => {
         setCountdown((prevCountdown) => prevCountdown - 1);
       }, 1000);

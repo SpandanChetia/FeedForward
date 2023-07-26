@@ -32,7 +32,7 @@ const Content = () => {
   
   return (
     <>
-    
+    <div id="layer"></div>
     <div className="video-background">
       <video autoPlay loop muted>
         <source src={BCKVID} type="video/mp4"/>

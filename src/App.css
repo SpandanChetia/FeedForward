@@ -3,11 +3,12 @@ body {
     font-family: 'Convergence', 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #121009;
-    flex-direction: column;
     
+    background: linear-gradient(0,#190335eb,#3D087E,#400885);
+    flex-direction: column;
+    min-height: 100vh;
     z-index: -10;
-    /* overflow-x: hidden; */
+    overflow-x: hidden;
   }
 
 /*Video Section*/
@@ -371,7 +372,7 @@ body {
   display: flex;
   flex-direction: column;
   padding-bottom: 100px;
-  background: linear-gradient(0deg, #fc7f60, #ffb47b);
+  background: linear-gradient(0,#190335eb,#3D087E,#400885);
 }
 
 .head-description {
@@ -1206,4 +1207,442 @@ theme-btn {
   width: 400px;
   height: 300px;
   margin: 0 10px;
+}
+
+
+
+
+/*Waste Page*/
+@import url("https://fonts.googleapis.com/css2?family=Convergence&display=swap");
+.foodwaste-body {
+  font-family: Arial, sans-serif;
+  background : linear-gradient(0deg, #190335eb 35%, #400885);
+  margin: 0;
+  padding: 0;
+  padding-bottom: 50px;
+  display:flex;
+  flex-direction: column;
+}
+
+::placeholder {
+  color: #999;
+  font-weight: bold;
+  font-size: 14px;
+}
+#msg{
+    text-align: center;
+    margin-top: 45px;
+}
+.waste-description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  width: 70vw;
+  margin-top: 1rem;
+}
+.waste-description h1 {
+  font-size: 3rem;
+  color: #ffffff;
+}
+.waste-description p {
+  text-align: center;
+  font-family: "Convergence", sans-serif;
+  font-style: italic;
+  color: #ffffff;
+  font-size: 25px;
+}
+.waste-description .site-name {
+  color: #e95b85;
+  font-family: "Convergence", sans-serif;
+}
+
+.waste-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.message{
+/*SignUp message*/
+padding: 8px;
+text-align: center;
+font-size: 17px;
+line-height: 30px;
+font-weight: 700;
+margin: 0 auto;
+width: 300px;
+max-width: calc(100vw - 48px);
+transform-origin: center bottom;
+transition: all 150ms ease-in-out 0s;
+border-radius: 12px;
+transform: translate3d(0px, 0px, 0px) scale(1);
+opacity: 1;
+}
+.success{
+  color: rgb(0, 104, 74);
+  border: 1px solid rgb(192, 250, 230);
+  box-shadow: rgba(6, 22, 30, 0.2) 0px 18px 18px -15px;
+  background-color: rgb(227, 252, 247);
+}
+
+.error{
+  color: rgb(104, 0, 0);
+  border: 1px solid rgb(250, 192, 192);
+  box-shadow: rgba(30, 18, 6, 0.2) 0px 18px 18px -15px;
+  background-color: rgb(252, 227, 227);
+}
+
+
+/*Countdown Timer*/
+.waste-countdown-timer{
+  margin: 0 auto;
+  text-align: center;
+  color: #ffffff;
+  letter-spacing: 0.05in;
+}
+.timer{
+  font-size: 25px;
+  font-weight: 800;
+  color: #7450a0;
+  letter-spacing: normal;
+}
+
+
+.waste-form-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.waste-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 35%;
+  height: 525px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(20px);
+}
+.waste-container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: #400885;
+}
+.waste-container .enter-btn {
+  background-color: #400885;
+  color: #ffffff;
+  border-color: transparent;
+  margin-top: 15px;
+  border-radius: 45px;
+  height: 2rem;
+  width: 9rem;
+  cursor: pointer;
+  box-shadow: 0 0 9px #a6a3a3;
+}
+.waste-container .waste-form-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+.waste-container .waste-form-group input {
+  width: 100%;
+  padding: 10px 0px;
+  border-radius: 5px;
+  border: 1.05px solid #ccc;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.3;
+  transition: border-color 0.3s ease;
+  padding-left: 2.1%;
+}
+.waste-container .waste-form-group input:focus {
+  border-color: #614385;
+  outline: none;
+}
+.waste-container .waste-form-group i {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #777;
+}
+.waste-container .waste-form-group:nth-child(1) i, .waste-container .form-group:nth-child(2) i, .waste-container .form-group:nth-child(3) i, .waste-container .form-group:nth-child(4) i, .waste-container .form-group:nth-child(5) i {
+  font-size: 18px;
+}
+.waste-container .waste-form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #999;
+}
+
+#additionalNotes{
+    display: block;
+  background-color: #f2f2f2;
+  color: #999;
+  height: 100px;
+  position: relative;
+  width: 100%;
+  padding: 10px 0px;
+  border-radius: 5px;
+  border: 1.05px solid #ccc;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.3;
+  transition: border-color 0.3s ease;
+  padding-left: 2.1%;
+}
+
+#additionalNotes input:focus{
+    border-color: #614385;
+    border-radius: 0;
+  outline: none;
+}
+
+.waste-form-group textarea {
+    resize: none;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*Recipe Search*/
+
+.RS-body {
+  background-color: #ffffff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #e95b85;
+  font-family: "Open Sans", sans-serif;
+}
+
+.menu {
+  display: flex;
+}
+
+.rs-navbar {
+  background : linear-gradient(0deg, #190335eb 35%, #400885);
+  width: 200px;
+  padding: 20px;
+  padding-bottom: 40rem;
+}
+
+.menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  padding: 10px;
+  cursor: pointer;
+  color: #ffffff !important;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  transition: background-color 0.3s;
+}
+
+.menu li:hover {
+  background-color: #6633cc;
+  text-decoration: none;
+}
+
+.rs-content {
+  flex: 1;
+  padding: 20px;
+  display: grid;
+  place-items: center;
+}
+
+/* #recipeSearch {
+  display: none;
+} */
+
+.rs-form {
+  margin-bottom: 20px;
+}
+
+.rs-form .ingredient-input {
+  margin-bottom: 10px;
+}
+
+.rs-form .ingredient-input label {
+  display: block;
+  font-weight: bold;
+  color: #e95b85;
+}
+
+.rs-form .btn-input {
+  display: flex;
+}
+
+.rs-form .btn-input input[type="text"] {
+  flex: 100%;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.rs-form .btn-input button {
+  
+  background-color: #6633cc;
+  color: #ffffff;
+  border: none;
+  padding: 5px 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.rs-form .btn-input button:hover {
+  background-color: #4d2298;
+}
+
+.rs-form .option-input {
+  margin-bottom: 10px;
+}
+
+.rs-form .option-input label {
+  display: block;
+  font-weight: bold;
+}
+
+.rs-form .option-input select,
+.rs-form .option-input input[type="number"],
+.rs-form .option-input input[type="text"] {
+  width: 80%;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  justify-items: center;
+}
+
+.recipe-row {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.recipe-column {
+  flex: 1 0 50%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.recipe-column img {
+  /* width: 80%; */
+  /* height: 20em; */
+  object-fit:contain;
+  border-radius: 15px;
+}
+
+.recipe-column h3 {
+  margin: 0;
+}
+
+.recipe-ingredients {
+  margin-top: 10px;
+}
+
+
+
+
+
+/*Nutrition Analysis*/
+
+.nutritionAnalysis-body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: #e95b85;
+}
+.input-container textarea{
+    resize: none;
+}
+.nutrition-content {
+  padding: 20px;
+  padding-bottom: 40em;
+}
+
+.input-container {
+  margin-bottom: 10px;
+}
+
+.input-container label {
+  display: block;
+  font-weight: bold;
+}
+
+.input-container input[type="text"] {
+  width: 100%;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.result-container {
+  margin-top: 20px;
+}
+
+.result-container h2 {
+  margin-bottom: 10px;
+}
+
+.result-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.result-container th,
+.result-container td {
+  padding: 5px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.result-container th {
+  font-weight: bold;
+}
+
+#nutri-analyze{
+    background-color: #6633cc;
+    color: #ffffff;
+    border: none;
+    width: fit-content;
+    padding: 5px 10px;
+    /* margin-left: 10px; */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#nutri-analyze:hover{
+    background-color: #4d2298;
+}
+.error-message {
+  color: red;
+  font-weight: bold;
 }

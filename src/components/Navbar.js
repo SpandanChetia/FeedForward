@@ -41,8 +41,8 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link className="button" to='/nourishinitiative'>
-              Nourish Initiative
+            <Link className="button" to='/recipeSearch'>
+              RS/NA/WA
             </Link>
           </li>
           <li>

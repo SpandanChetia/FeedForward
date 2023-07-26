@@ -9,12 +9,13 @@ import Footer from "./components/Footer";
 import Donation from "./pages/Donation";
 import Inventory from "./pages/Inventory";
 import SignUp from "./pages/SignUp";
-import NourishInitiative from "./pages/NourishInitiative";
 import Login from "./pages/Login";
 
 import {AuthProvider} from './AuthContext';
 import ECOProgress from "./pages/ECOProgress";
-// import Problems from "./components/Problems";
+import Waste from "./pages/Waste";
+import RecipeSearch from "./pages/RecipeSearch";
+import NutritionAnalysis from "./pages/NutritionAnalysis";
 
 
 
@@ -29,7 +30,9 @@ function App() {
           <Route path="/donation" element={<Donation/>} />
           <Route path="/inventory" element={<Inventory/>}/>
           <Route path="/signup" element={<SignUp/>}/>
-          <Route path="/nourishinitiative" element={<NourishInitiative/>}></Route>
+          <Route path="/recipeSearch" element={<RecipeSearch/>}></Route>
+          <Route path="/wasteAnalysis" element={<Waste/>}></Route>
+          <Route path="/nutriAnalysis" element={<NutritionAnalysis/>}></Route>
           <Route path="/login" element={<Login/>}></Route>
           <Route path="/ecopro" element={<ECOProgress/>}></Route>
         </Routes>
