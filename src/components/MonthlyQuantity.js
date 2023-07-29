@@ -54,7 +54,7 @@ const MonthlyQuantity = () => {
       {
         label: "Total Quantity Purchased",
         data: Object.values(monthlyQuantity),
-        backgroundColor: "rgba(75, 192, 192, 0.6)",
+        backgroundColor: "rgba(233, 91, 133, 1)",
       },
     ],
   };

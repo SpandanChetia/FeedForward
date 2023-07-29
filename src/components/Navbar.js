@@ -42,7 +42,7 @@ const Navbar = () => {
           </li>
           <li>
             <Link className="button" to='/recipeSearch'>
-              RS/NA/WA
+              Kitchen Resources
             </Link>
           </li>
           <li>

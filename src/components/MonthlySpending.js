@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../AuthContext";
 import { Typography } from "@mui/material";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 const MonthlySpending = () => {
   const { loggedIn } = useContext(AuthContext);
@@ -51,12 +51,18 @@ const MonthlySpending = () => {
   const chartData = {
     labels: Object.keys(monthlySpending).map((month) => `${MONTHS[parseInt(month)]}`),
     datasets: [
-      {
+    {
         label: "Total Spending",
         data: Object.values(monthlySpending),
-        backgroundColor: "rgba(75, 192, 192, 0.6)",
+        backgroundColor: "rgba(233, 91, 133, 1)",
+        borderColor: "rgba(233, 91, 133, 0.8)",
+        borderWidth: 2,
+        pointBackgroundColor: "rgba(233, 91, 133, 0.8)"
       },
     ],
+    labelsStyle: {
+      color: "rgba(233, 91, 133, 0.8)", // Change the text color of month names
+    },
   };
 
   return (
@@ -70,7 +76,7 @@ const MonthlySpending = () => {
           </div>
           {Object.keys(monthlySpending).length > 0 ? (
             <div className="monthly-spending-chart">
-              <Bar data={chartData} />
+              <Line data={chartData} />
             </div>
           ) : (
             <Typography

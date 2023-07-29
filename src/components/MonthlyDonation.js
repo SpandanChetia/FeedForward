@@ -48,7 +48,7 @@ const MonthlyDonation = () => {
 
       setMonthlyDonation(DonationByMonth);
     } catch (error) {
-      console.log("Error fetching monthly doantion data:", error);
+      console.log("Error fetching monthly donation data:", error);
     }
   };
 
@@ -60,7 +60,7 @@ const MonthlyDonation = () => {
       {
         label: "Total Donation Made",
         data: Object.values(monthlyDonation),
-        backgroundColor: "rgba(75, 192, 192, 0.6)",
+        backgroundColor: "rgba(233, 91, 133, 1)",
       },
     ],
   };
@@ -71,7 +71,7 @@ const MonthlyDonation = () => {
         <div>
           <div className="monthly-Donation-heading">
             <h1>
-              YOUR <span className="spending">MONTHLY DONATIN MADE</span>
+              YOUR <span className="spending">MONTHLY DONATION MADE</span>
             </h1>
           </div>
           {Object.keys(monthlyDonation).length > 0 ? (
@@ -87,7 +87,7 @@ const MonthlyDonation = () => {
                 mt: "20px",
               }}
             >
-              No data available for monthly donation made.
+              You have not made any donations yet.
             </Typography>
           )}
         </div>

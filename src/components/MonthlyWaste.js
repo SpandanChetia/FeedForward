@@ -54,7 +54,7 @@ const MonthlyWaste = () => {
       {
         label: "Total Waste ",
         data: Object.values(MonthlyWaste),
-        backgroundColor: "rgba(75, 192, 192, 0.6)",
+        backgroundColor: "rgba(233, 91, 133, 1)",
       },
     ],
   };

@@ -59,7 +59,7 @@ const Content = () => {
       </p>
       {loggedIn ? (
           <div className="logged-in-text">
-            <p>Welcome....</p>
+            <p>Welcome Back !</p>
           </div>
         ) : (
           <div className="signup-container">

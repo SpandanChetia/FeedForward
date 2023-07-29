@@ -144,7 +144,7 @@ body {
     bottom: -2px;
     width: 0;
     height: 2px;
-    background-color: #fff;
+    background-color: #8b2efeeb;
     transition: width 0.3s ease;
   }
   
@@ -292,7 +292,7 @@ body {
   }
   .logged-in-text{
     text-transform: uppercase;
-    font-style:normal !important;
+    font-style:normal important;
     font-size: 25px;
   }
 
@@ -930,13 +930,14 @@ opacity: 1;
 
 
 /*Event Component Cards*/
-body{
-  background : linear-gradient(0deg, #190335eb 35%, #400885);
+
+.monthly-spending-container, .monthly-Donation-container, .monthly-Quantity-container{
+  margin-top: 35px;
+  text-align: center;
+  color:white;
 }
 
-.monthly-Quantity-heading h1{
-  text-align: center;
-}
+
 .Month-name{
   /* background: linear-gradient(to right, #614385, #605195); */
   --webkit-background-clip: text;
@@ -953,8 +954,6 @@ body{
   align-items: center;
   width: 50%;
 }
-
-
 
 .card {
   position: relative;
