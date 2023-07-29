@@ -62,6 +62,7 @@ const MonthlySpending = () => {
   };
 
   const axis = {
+    responsive: true,
     scales: {
       x: {
         grid: {

@@ -932,12 +932,14 @@ opacity: 1;
 /*Event Component Cards*/
 
 .monthly-spending-container{
+  font-size: 1rem;
   margin-top: 45px;
   text-align: center;
   color:white;
 }
 
 .monthly-Donation-container, .monthly-Quantity-container, .monthly-Waste-container{
+  font-size: 1rem;
   margin-top: 85px;
   text-align: center;
   color:white;

@@ -58,6 +58,8 @@ const MonthlyDonation = () => {
   };
 
   const tagname = {
+    responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         labels: {
@@ -71,7 +73,7 @@ const MonthlyDonation = () => {
     labels: Object.keys(monthlyDonation).map((month) => `${MONTHS[parseInt(month)]} `),
     datasets: [
       {
-        label: "Total Donation Made",
+        label: "Total Donation Made in g",
         data: Object.values(monthlyDonation),
         backgroundColor: "rgba(233, 91, 133, 1)",
       },

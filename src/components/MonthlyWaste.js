@@ -62,6 +62,7 @@ const MonthlyWaste = () => {
   };
 
   const axis = {
+    responsive: true,
     scales: {
       x: {
         grid: {
@@ -91,7 +92,7 @@ const MonthlyWaste = () => {
     labels: Object.keys(MonthlyWaste).map((month) => `${MONTHS[parseInt(month)]}`),
     datasets: [
       {
-        label: "Total Waste ",
+        label: "Total Waste in g",
         data: Object.values(MonthlyWaste),
         backgroundColor: "rgba(233, 91, 133, 1)",
       },

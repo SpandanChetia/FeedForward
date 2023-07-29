@@ -61,6 +61,7 @@ const MonthlyQuantity = () => {
   };
 
   const axis = {
+    responsive: true,
     scales: {
       x: {
         grid: {
@@ -89,7 +90,7 @@ const MonthlyQuantity = () => {
     labels: Object.keys(monthlyQuantity).map((month) => `${MONTHS[parseInt(month)]}`),
     datasets: [
       {
-        label: "Total Quantity Purchased",
+        label: "Total Quantity Purchased in g",
         data: Object.values(monthlyQuantity),
         backgroundColor: "rgba(233, 91, 133, 1)",
       },
