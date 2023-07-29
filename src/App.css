@@ -530,7 +530,6 @@ body {
   justify-content: space-around;
   align-items: center;
   /* background: none; */
-  
   padding: 20px;
   border-radius: 5px;
   /* box-shadow: 0 0 100px 2.5px #550dad; */
@@ -543,7 +542,7 @@ body {
   background: #fff;
   padding: 10px;
   border-radius: 10px;
-  box-shadow: 0 0 100px 2.5px #550dad;
+  box-shadow: 0 0 100px 1.5px #550dad;
 }
 
 .grocery-form-container th,
@@ -559,7 +558,7 @@ td {
   margin-bottom: 20px;
   width: 30%;
   background-color: #fff;
-  box-shadow: 0 0 100px 2.5px #550dad;
+  box-shadow: 0 0 100px 1.5px #550dad;
 }
 
 .grocery-form-container input[type="text"],
