@@ -9,7 +9,7 @@ const MonthlyWaste = () => {
   const [MonthlyWaste, setMonthlyWaste] = useState([]);
   const MONTHS=["JANUARY","FEBRUAURY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
   const chartContainerStyle = {
-    margin: "40px"
+    margin: "98px"
   };
 
   useEffect(() => {
@@ -99,16 +99,16 @@ const MonthlyWaste = () => {
   };
 
   return (
-    <div className="monthly-spending-container" style={chartContainerStyle}>
+    <div className="monthly-Waste-container" style={chartContainerStyle}>
       {loggedIn ? (
         <div>
-          <div className="monthly-spending-heading">
+          <div className="monthly-waste-heading">
             <h1>
-              YOUR <span className="spending">MONTHLY WASTE</span>
+              YOUR <span className="wasting">MONTHLY WASTE</span>
             </h1>
           </div>
           {Object.keys(MonthlyWaste).length > 0 ? (
-            <div className="monthly-spending-chart">
+            <div className="monthly-wasting-chart">
               <Bar data={chartData} options={customs}/>
             </div>
           ) : (

@@ -9,9 +9,9 @@ const MonthlySpending = () => {
   const [monthlySpending, setMonthlySpending] = useState([]);
   const MONTHS=["JANUARY","FEBRUAURY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
   const chartContainerStyle = {
-    margin: "40px"
+    margin: "40px",
   };
-  
+
   useEffect(() => {
     if (loggedIn) {
       fetchMonthlySpending();
