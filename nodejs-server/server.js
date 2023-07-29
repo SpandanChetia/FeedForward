@@ -31,7 +31,6 @@ mongoose
     process.exit(1); // Terminate the server on connection error
   });
 
-
 // Define a middleware function to verify the token
 const verifyToken = (req, res, next) => {
   const token = req.headers.authorization;
@@ -40,22 +39,19 @@ const verifyToken = (req, res, next) => {
     return res.status(401).json({ error: "Unauthorized" });
   }
 
-  jwt.verify(token, "78f15b5705f3cd8d8c39ec495b9ac2f6637bf215eaf3dbf02e9f7549320a483b", (err, decodedToken) => {
-    if (err) {
-      return res.status(401).json({ error: "Invalid token" });
+  jwt.verify(
+    token,
+    "78f15b5705f3cd8d8c39ec495b9ac2f6637bf215eaf3dbf02e9f7549320a483b",
+    (err, decodedToken) => {
+      if (err) {
+        return res.status(401).json({ error: "Invalid token" });
+      }
+
+      req.userId = decodedToken.userId;
+      next();
     }
-
-    req.userId = decodedToken.userId;
-    next();
-  });
+  );
 };
-
-
-
-
-
-
-
 
 // Create a schema and model for the user
 const userSchema = new mongoose.Schema({
@@ -109,10 +105,6 @@ app.post("/signup", (req, res) => {
   });
 });
 
-
-
-
-
 // Define a route to handle form submissions for login
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
@@ -135,7 +127,10 @@ app.post("/login", (req, res) => {
         }
 
         // Create and sign a JWT token
-        const token = jwt.sign({ userId: user._id }, "78f15b5705f3cd8d8c39ec495b9ac2f6637bf215eaf3dbf02e9f7549320a483b");
+        const token = jwt.sign(
+          { userId: user._id },
+          "78f15b5705f3cd8d8c39ec495b9ac2f6637bf215eaf3dbf02e9f7549320a483b"
+        );
 
         // Return the token in the response
         res.json({ token });
@@ -147,18 +142,6 @@ app.post("/login", (req, res) => {
     });
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
 /*Donation Server*/
 
 // Create a schema and model for the donation in the donation database
@@ -167,7 +150,7 @@ const donationSchema = new mongoose.Schema({
   name: String,
   email: String,
   amount: Number,
-  donationDate:Date,
+  donationDate: Date,
   location: String,
   city: String,
 });
@@ -175,11 +158,13 @@ const donationSchema = new mongoose.Schema({
 const Donation = mongoose.model("Donation", donationSchema);
 
 // Define a route to handle form submissions for donation
-app.post("/donate",verifyToken, (req, res) => {
-  const { name, email, amount,donationDate, location, city } = req.body;
+app.post("/donate", verifyToken, (req, res) => {
+  const { name, email, amount, donationDate, location, city } = req.body;
   const userId = req.userId;
   if (!name || !email || !amount || !donationDate || !location || !city) {
-    return res.status(400).json({ error: "Missing required donation data fields" });
+    return res
+      .status(400)
+      .json({ error: "Missing required donation data fields" });
   }
 
   // Create a new donation instance
@@ -218,21 +203,6 @@ app.get("/donation", verifyToken, (req, res) => {
     });
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*Inventory Page */
 
 // Create a schema and model for the inventory item
@@ -240,7 +210,7 @@ const inventorySchema = new mongoose.Schema({
   itemName: String,
   itemQuantity: Number,
   itemCost: Number,
-  itemPurchaseDate:Date,
+  itemPurchaseDate: Date,
   itemExpiryDate: Date,
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   consumed: { type: Boolean, default: false },
@@ -248,13 +218,19 @@ const inventorySchema = new mongoose.Schema({
 
 const InventoryItem = mongoose.model("InventoryItem", inventorySchema);
 
-
 // Define a route to handle form submissions for adding an item to the inventory
 app.post("/inventory", verifyToken, (req, res) => {
-  const { itemName, itemQuantity, itemCost,itemPurchaseDate ,itemExpiryDate } = req.body;
+  const { itemName, itemQuantity, itemCost, itemPurchaseDate, itemExpiryDate } =
+    req.body;
   const userId = req.userId;
 
-  if (!itemName || !itemQuantity || !itemCost || !itemPurchaseDate || !itemExpiryDate) {
+  if (
+    !itemName ||
+    !itemQuantity ||
+    !itemCost ||
+    !itemPurchaseDate ||
+    !itemExpiryDate
+  ) {
     return res.status(400).json({ error: "Missing required fields" });
   }
 
@@ -319,5 +295,54 @@ app.put("/inventory/:id", verifyToken, (req, res) => {
     .catch((err) => {
       console.log(err);
       res.status(500).json({ error: "Failed to find inventory item" });
+    });
+});
+
+/*Food Waste Data DB*/
+
+//Creating Schema for Waste Data
+const wasteSchema = new mongoose.Schema({
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  foodItem: String,
+  foodQuantity: Number,
+  foodReason: String,
+  foodWasteDate: Date,
+  foodAddTxt: String,
+});
+
+const WasteData = mongoose.model("WasteData", wasteSchema);
+
+//Route to handle WasteData Submission
+app.post("/wasteData", verifyToken, (req, res) => {
+  const { foodItem, foodQuantity, foodReason, foodWasteDate, foodAddTxt } =
+    req.body;
+  if (
+    !foodItem ||
+    !foodQuantity ||
+    !foodReason ||
+    !foodWasteDate ||
+    !foodAddTxt
+  ) {
+    return res.status(400).json({ error: "Missing required fields" });
+  }
+  const userId = req.userId;
+  const newWasteData = new WasteData({
+    user: userId,
+    foodItem,
+    foodQuantity,
+    foodReason,
+    foodWasteDate,
+    foodAddTxt,
+  });
+
+  //Save the Data
+  newWasteData
+    .save()
+    .then((waste) => {
+      res.json(waste);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: "Failed to Save Waste Data" });
     });
 });

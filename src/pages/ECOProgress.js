@@ -8,7 +8,6 @@ const ECOProgress = () => {
   
   return (
     <div>
-      {/*DO NOT INTERFERE WITH THE COMMENTED CODES */}
       <MonthlySpending/>
       <MonthlyQuantity/>
       <MonthlyDonation/>
