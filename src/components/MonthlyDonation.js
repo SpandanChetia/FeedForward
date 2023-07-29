@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../AuthContext";
 import { Typography } from "@mui/material";
-import { Bar } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 // import { Chart } from "chart.js";
 import Chart from 'chart.js/auto';
 // Chart.register(Bar);
@@ -11,7 +11,11 @@ import Chart from 'chart.js/auto';
 const MonthlyDonation = () => {
   const { loggedIn } = useContext(AuthContext);
   const [monthlyDonation, setMonthlyDonation] = useState([]);
-
+  const chartContainerStyle = {
+    height: "500px",
+    width: "500px",
+    margin: "auto", 
+  };
   const MONTHS=["JANUARY","FEBRUAURY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
   useEffect(() => {
     if (loggedIn) {
@@ -75,8 +79,8 @@ const MonthlyDonation = () => {
             </h1>
           </div>
           {Object.keys(monthlyDonation).length > 0 ? (
-            <div className="monthly-donation-chart">
-              <Bar data={chartData} />
+            <div className="monthly-donation-chart" style={chartContainerStyle}>
+              <Doughnut data={chartData}/>
             </div>
           ) : (
             <Typography

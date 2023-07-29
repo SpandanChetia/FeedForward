@@ -42,12 +42,12 @@ const Navbar = () => {
           </li>
           <li>
             <Link className="button" to='/recipeSearch'>
-              Kitchen Resources
+              Chef's Corner
             </Link>
           </li>
           <li>
             <Link className="button" to="/ecopro">
-              Eco-Progress
+            Kitchen Analytics
             </Link>
           </li>
         </ul>

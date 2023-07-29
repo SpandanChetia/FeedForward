@@ -133,7 +133,7 @@ const Waste = () => {
                 ></textarea>
               </div>
               <button type="submit" className="enter-btn">
-                ENTER
+                ADD
               </button>
             </form>
             
