@@ -265,6 +265,9 @@ body {
   border: none;
   box-shadow: 0 0 10px 1px /*#ff7e5f;*/ #DF678C;
   margin-top: 50px;
+}
+
+.signup-button:hover{
   animation: disco 3s infinite;
 }
 
@@ -305,7 +308,8 @@ body {
     display: block;
     width: 100px;
     height: 34px;
-    background: linear-gradient(0deg, /*#614385*/ /*#8158b3*/#5c0fbaeb, /*#605195*/ #9881ea 180%, #5c0fbaeb);
+    /*background: linear-gradient(0deg, #5c0fbaeb, #9881ea 180%, #5c0fbaeb);*/
+    background-color: #5c0fbaeb;
     color: #ffffff;
     font-size: 17px;
     text-align: center;
@@ -313,13 +317,13 @@ body {
     text-decoration: none;
     border-radius: 45px;
     border: none;
-    box-shadow: 0 0 10px 2px #5c0fba;
+    
     margin-top: 30px;
   }
 
   .join-button a:hover{
-    background: linear-gradient(180deg, #f16594, #dd406f);
-  box-shadow: 0 0 10px 2px #f16594;
+    background: linear-gradient(0deg, #5c0fbaeb, #9881ea 180%, #5c0fbaeb);
+    box-shadow: 0 0 10px 3px #5c0fba;
   }
   
   /* .meet-heroes{
