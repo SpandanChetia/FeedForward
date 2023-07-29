@@ -8,6 +8,9 @@ const MonthlyWaste = () => {
   const { loggedIn } = useContext(AuthContext);
   const [MonthlyWaste, setMonthlyWaste] = useState([]);
   const MONTHS=["JANUARY","FEBRUAURY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
+  const chartContainerStyle = {
+    margin: "40px"
+  };
 
   useEffect(() => {
     if (loggedIn) {
@@ -48,6 +51,42 @@ const MonthlyWaste = () => {
     }
   };
 
+  const tagname = {
+    plugins: {
+      legend: {
+        labels: {
+          color: "white",
+        },
+      },
+    },
+  };
+
+  const axis = {
+    scales: {
+      x: {
+        grid: {
+          color: "rgba(255,255,255, 0.2)", 
+          borderColor: "rgba(233, 91, 133, 1)", 
+          drawBorder: true, 
+          borderWidth: 1, 
+        },
+        ticks: {
+          color: "white"
+        }
+      },
+      y: {
+        grid:{
+          color: "rgba(255,255,255, 0.2)",
+          display: true,
+        },
+        ticks: {
+          color: "rgba(233, 91, 133, 1)", 
+        }
+      },
+    },
+  };
+  const customs = { ...axis, ...tagname};
+
   const chartData = {
     labels: Object.keys(MonthlyWaste).map((month) => `${MONTHS[parseInt(month)]}`),
     datasets: [
@@ -60,7 +99,7 @@ const MonthlyWaste = () => {
   };
 
   return (
-    <div className="monthly-spending-container">
+    <div className="monthly-spending-container" style={chartContainerStyle}>
       {loggedIn ? (
         <div>
           <div className="monthly-spending-heading">
@@ -70,7 +109,7 @@ const MonthlyWaste = () => {
           </div>
           {Object.keys(MonthlyWaste).length > 0 ? (
             <div className="monthly-spending-chart">
-              <Bar data={chartData} />
+              <Bar data={chartData} options={customs}/>
             </div>
           ) : (
             <Typography

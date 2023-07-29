@@ -9,8 +9,9 @@ const MonthlySpending = () => {
   const [monthlySpending, setMonthlySpending] = useState([]);
   const MONTHS=["JANUARY","FEBRUAURY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
   const chartContainerStyle = {
-    margin: "30px"
+    margin: "40px"
   };
+  
   useEffect(() => {
     if (loggedIn) {
       fetchMonthlySpending();
@@ -50,11 +51,47 @@ const MonthlySpending = () => {
     }
   };
 
+  const tagname = {
+    plugins: {
+      legend: {
+        labels: {
+          color: "white",
+        },
+      },
+    },
+  };
+
+  const axis = {
+    scales: {
+      x: {
+        grid: {
+          color: "rgba(255,255,255, 0.2)", 
+          borderColor: "rgba(233, 91, 133, 1)", 
+          drawBorder: true, 
+          borderWidth: 1, 
+        },
+        ticks: {
+          color: "white"
+        }
+      },
+      y: {
+        grid:{
+          color: "rgba(255,255,255, 0.2)",
+          display: true,
+        },
+        ticks: {
+          color: "rgba(233, 91, 133, 1)", 
+        }
+      },
+    },
+  };
+  const customs = { ...axis, ...tagname};
+
   const chartData = {
     labels: Object.keys(monthlySpending).map((month) => `${MONTHS[parseInt(month)]}`),
     datasets: [
     {
-        label: "Total Spending",
+        label: "Total Spendings in ₹",
         data: Object.values(monthlySpending),
         backgroundColor: "rgba(233, 91, 133, 1)",
         borderColor: "rgba(233, 91, 133, 0.8)",
@@ -63,7 +100,7 @@ const MonthlySpending = () => {
       },
     ],
     labelsStyle: {
-      color: "rgba(233, 91, 133, 0.8)", // Change the text color of month names
+      color: "rgba(233, 91, 133, 1)",
     },
   };
 
@@ -73,12 +110,12 @@ const MonthlySpending = () => {
         <div>
           <div className="monthly-spending-heading">
             <h1>
-              YOUR <span className="spending">MONTHLY SPENDING</span>
+              YOUR <span className="spending">MONTHLY SPENDINGS</span>
             </h1>
           </div>
           {Object.keys(monthlySpending).length > 0 ? (
             <div className="monthly-spending-chart" style={chartContainerStyle}>
-              <Line data={chartData} />
+              <Line data={chartData} options={customs}/>
             </div>
           ) : (
             <Typography

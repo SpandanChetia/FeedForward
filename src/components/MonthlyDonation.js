@@ -16,6 +16,7 @@ const MonthlyDonation = () => {
     width: "500px",
     margin: "auto", 
   };
+  
   const MONTHS=["JANUARY","FEBRUAURY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
   useEffect(() => {
     if (loggedIn) {
@@ -56,7 +57,15 @@ const MonthlyDonation = () => {
     }
   };
 
-  
+  const tagname = {
+    plugins: {
+      legend: {
+        labels: {
+          color: "white",
+        },
+      },
+    },
+  };
 
   const chartData = {
     labels: Object.keys(monthlyDonation).map((month) => `${MONTHS[parseInt(month)]} `),
@@ -75,12 +84,12 @@ const MonthlyDonation = () => {
         <div>
           <div className="monthly-Donation-heading">
             <h1>
-              YOUR <span className="spending">MONTHLY DONATION MADE</span>
+              YOUR <span className="spending">MONTHLY DONATIONS MADE</span>
             </h1>
           </div>
           {Object.keys(monthlyDonation).length > 0 ? (
             <div className="monthly-donation-chart" style={chartContainerStyle}>
-              <Doughnut data={chartData}/>
+              <Doughnut data={chartData} options={tagname}/>
             </div>
           ) : (
             <Typography

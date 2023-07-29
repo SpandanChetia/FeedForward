@@ -50,6 +50,41 @@ const MonthlyQuantity = () => {
     }
   };
 
+  const tagname = {
+    plugins: {
+      legend: {
+        labels: {
+          color: "white",
+        },
+      },
+    },
+  };
+
+  const axis = {
+    scales: {
+      x: {
+        grid: {
+          color: "rgba(255,255,255, 0.2)", 
+          borderColor: "rgba(233, 91, 133, 1)", 
+          drawBorder: true, 
+          borderWidth: 1, 
+        },
+        ticks: {
+          color: "white"
+        }
+      },
+      y: {
+        grid:{
+          color: "rgba(255,255,255, 0.2)",
+          display: true,
+        },
+        ticks: {
+          color: "rgba(233, 91, 133, 1)", 
+        }
+      },
+    },
+  };
+  const customs = { ...axis, ...tagname};
   const chartData = {
     labels: Object.keys(monthlyQuantity).map((month) => `${MONTHS[parseInt(month)]}`),
     datasets: [
@@ -72,7 +107,7 @@ const MonthlyQuantity = () => {
           </div>
           {Object.keys(monthlyQuantity).length > 0 ? (
             <div className="monthly-quantity-chart" style={chartContainerStyle}>
-              <Bar data={chartData} />
+              <Bar data={chartData} options={customs}/>
             </div>
           ) : (
             <Typography

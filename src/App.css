@@ -931,12 +931,17 @@ opacity: 1;
 
 /*Event Component Cards*/
 
-.monthly-spending-container, .monthly-Donation-container, .monthly-Quantity-container{
-  margin-top: 35px;
+.monthly-spending-container{
+  margin-top: 45px;
   text-align: center;
   color:white;
 }
 
+.monthly-Donation-container, .monthly-Quantity-container{
+  margin-top: 90px;
+  text-align: center;
+  color:white;
+}
 
 .Month-name{
   /* background: linear-gradient(to right, #614385, #605195); */
