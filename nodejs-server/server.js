@@ -180,7 +180,7 @@ app.post("/donate", verifyToken, (req, res) => {
 
   // Save the donation to the donation database
   newDonation
-    .save()
+    .save() 
     .then((donation) => {
       res.json(donation);
     })
@@ -313,9 +313,10 @@ const wasteSchema = new mongoose.Schema({
 const WasteData = mongoose.model("WasteData", wasteSchema);
 
 //Route to handle WasteData Submission
-app.post("/wasteData", verifyToken, (req, res) => {
+app.post("/waste", verifyToken, (req, res) => {
   const { foodItem, foodQuantity, foodReason, foodWasteDate, foodAddTxt } =
     req.body;
+    const userId = req.userId;
   if (
     !foodItem ||
     !foodQuantity ||
@@ -325,7 +326,6 @@ app.post("/wasteData", verifyToken, (req, res) => {
   ) {
     return res.status(400).json({ error: "Missing required fields" });
   }
-  const userId = req.userId;
   const newWasteData = new WasteData({
     user: userId,
     foodItem,
@@ -344,5 +344,18 @@ app.post("/wasteData", verifyToken, (req, res) => {
     .catch((err) => {
       console.log(err);
       res.status(500).json({ error: "Failed to Save Waste Data" });
+    });
+});
+// Define a route to fetch waste quantity for a specific user
+app.get("/waste", verifyToken, (req, res) => {
+  const userId = req.userId;
+
+  WasteData.find({ user: userId })
+    .then((items) => {
+      res.json(items);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: "Failed to fetch inventory items" });
     });
 });

@@ -44,15 +44,12 @@ const RecipeSearch = () => {
         <div className="rs-navbar">
           <ul>
             <Link to="/recipeSearch">
-              {" "}
               <li className="rs-links">Recipe Search</li>
             </Link>
             <Link to="/nutriAnalysis">
-              {" "}
               <li className="rs-links">Nutrition Analysis</li>
             </Link>
             <Link to="/wasteAnalysis">
-              {" "}
               <li className="rs-links">Food Wastage</li>
             </Link>
           </ul>

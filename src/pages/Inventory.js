@@ -83,7 +83,7 @@ const Inventory = () => {
         }
       );
 
-      console.log("Item added successfully:", response.data);
+      console.log("Item added successfully:");
 
       // Clear the form fields
       setItemName("");

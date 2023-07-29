@@ -31,7 +31,7 @@ const Waste = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:5000/wasteData",
+        "http://localhost:5000/waste",
         FoodWasteData,
         {
           headers: {
@@ -88,8 +88,8 @@ const Waste = () => {
                   id="food-item"
                   name="food-item"
                   placeholder="Food Item"
-                  required
                   onChange={(e)=>setFoodItem(e.target.value)}
+                  required
                 />
               </div>
               <div className="waste-form-group">
@@ -99,8 +99,8 @@ const Waste = () => {
                   id="quantity"
                   name="quantity"
                   placeholder="Quantity Wasted (in grams)"
-                  required
                   onChange={(e)=>setFoodQuantity(e.target.value)}
+                  required
                 />
               </div>
               <div className="waste-form-group">
@@ -110,8 +110,8 @@ const Waste = () => {
                   name="reason"
                   value={foodReason}
                   placeholder="Reason for Waste e.g., Expired, Leftovers, Overcooked, etc."
-                  required
                   onChange={(e)=>setFoodReason(e.target.value)}
+                  required
                 />
               </div>
               <div className="waste-form-group">
@@ -119,8 +119,8 @@ const Waste = () => {
                   type="date"
                   placeholder="Date of Waste"
                   value={foodWasteDate}
-                  required
                   onChange={(e)=>setFoodWasteDate(e.target.value)}
+                  required
                 />
               </div>
               <div className="waste-form-group">
@@ -132,12 +132,13 @@ const Waste = () => {
                   onChange={(e)=>setFoodAddTxt(e.target.value)}
                 ></textarea>
               </div>
-            </form>
-            <a href="#msg">
-              <button type="button" className="enter-btn">
+              <button type="submit" className="enter-btn">
                 ENTER
               </button>
-            </a>
+            </form>
+            
+              
+            
           </div>
         </div>
         {wasteMessage && (
