@@ -931,9 +931,12 @@ opacity: 1;
 
 /*Event Component Cards*/
 body{
-  background: linear-gradient(0deg, #ff7e5f, #feb47b 50%);
+  background : linear-gradient(0deg, #190335eb 35%, #400885);
 }
 
+.monthly-Quantity-heading h1{
+  text-align: center;
+}
 .Month-name{
   /* background: linear-gradient(to right, #614385, #605195); */
   --webkit-background-clip: text;
@@ -1031,7 +1034,7 @@ body{
 /*LOGIN PAGE*/
 
 .login-body{
-  background:linear-gradient(0deg, #ff7e5f, #feb47b);
+  background : linear-gradient(0deg, #190335eb 35%, #400885);
   color: #ffffff;
   letter-spacing: 1px;
 }
