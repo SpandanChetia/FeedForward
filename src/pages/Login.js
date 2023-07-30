@@ -65,7 +65,7 @@ const Login = () => {
       <section className="login-body-container">
         <div className="login-container">
           <div className="form-container">
-            <img
+          <img
               src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png"
               alt="illustration"
               className="illustration"
