@@ -1718,7 +1718,7 @@ opacity: 1;
 .card4,
 .card5,
 .card6 {
-  background-color: /*#e99ab1*/ #e3698e;
+  background-color: /*#e99ab1*/ white;
   padding: 20px;
   border-radius: 5px;
 }
@@ -1730,7 +1730,7 @@ opacity: 1;
 .card5 h1,
 .card6 h1{
   margin-top: 15px;
-  color :white;
+  color :#e3698e;
 }
 
 .card6 h1{
