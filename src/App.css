@@ -1683,8 +1683,9 @@ opacity: 1;
 
 .created #underline1{
   width: 14rem;
-  height: 0.7rem;
+  height: 0.9rem;
 }
+
 .the-problems {
   display: flex;
   flex-direction: column;
