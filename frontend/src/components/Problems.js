@@ -8,19 +8,25 @@ import Resources from "../assets/resources.jpg";
 import Community from "../assets/community.jpg";
 import Sustainable from "../assets/sustainable.jpg";
 import underline1 from "../assets/underline-heading.png";
+import Arrow1 from "../assets/arrow1.png";
+import Bulb from "../assets/bulb.png";
+import Sun from "../assets/atom.png";
+import Smallstars from "../assets/small-stars.png";
+import Smallstars2 from "../assets/small-stars2.png";
 
 const Problems = () => {
   return (
     <div id="problems">
       <div class="the-problems">
         <div class="problems-section1">
-        <h1 id="heading-problems">Why Was FeedForward <span className="created"> Created ? <img id="underline1" src ={underline1} alt = "underline"/></span></h1>
+        <h1 id="heading-problems"><img id="small-stars3" src={Smallstars} alt="Sun Photo"/>Why Was FeedForward <span className="created"> Created ? <img id="underline1" src ={underline1} alt = "underline"/></span></h1>
+        <div className="handwritten"><img id="sun" src={Sun} alt="Sun Photo"/><img id="small-stars" src={Smallstars} alt="Sun Photo"/><img id="small-stars1" src={Smallstars2} alt="Sun Photo"/><img id="arrow1" src ={Arrow1} alt = "Down arrow"/></div>
             <div class="cards">
                 <div class="card1">
                     <img id="WasteMoney" src={Wastemoney} alt ="Waste of Money photo"/>
                     <h1>Wasted Money</h1>
                     <p>Food waste results in significant financial losses. Around the world, 
-                        it is estimated that we collectively waste [insert estimated amount] of dollars each year on discarded food. 
+                        it is estimated that <span id="para-highlights">we collectively waste ₹92,000 crores per annum on discarded food. </span> 
                         By reducing waste, we can save money and support businesses.</p></div>
                 <div class="card2">
                     <img id="Envtimpact" src={Envimpact} alt="Environment Impact photo"/>
