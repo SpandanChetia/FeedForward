@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
+    <!-- <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" /> -->
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <link href="https://fonts.googleapis.com/css2?family=Convergence&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pathway+Extreme:wght@700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-EnVUSi51qcwAQGZf3QRMLBl4hdAjjwA&libraries=places"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Feed Forward</title>
+</head>
+
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+
+    <!-- <script>
+    // Function to initialize the map and enable auto-fill functionality
+    function initializeMap() {
+        const map = L.map('map').setView([37.7749, -122.4194], 12); // Set the initial map view
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+            maxZoom: 18,
+        }).addTo(map);
+
+        const marker = L.marker([37.7749, -122.4194], { draggable: true }).addTo(map); // Add a draggable marker
+
+        // Update the address and city inputs when the marker is dragged
+        marker.on('dragend', function (event) {
+            const latlng = event.target.getLatLng();
+
+            // Perform reverse geocoding to get the address based on marker's location
+            fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latlng.lat}&lon=${latlng.lng}&format=json`)
+                .then((response) => response.json())
+                .then((data) => {
+                    document.getElementById('location').value = data.display_name;
+                    document.getElementById('city').value = data.address.city || '';
+                });
+        });
+    }
+
+    // Call the initializeMap function when the page finishes loading
+    window.onload = initializeMap;
+</script>  -->
+
+    <!-- <script>
+      // Function to initialize the map and enable auto-complete functionality
+      function initializeMap() {
+          const input = document.getElementById('location');
+          const autocomplete = new google.maps.places.Autocomplete(input);
+  
+          autocomplete.addListener('place_changed', function () {
+              const place = autocomplete.getPlace();
+              if (!place.geometry) {
+                  window.alert("No details available for input: '" + place.name + "'");
+                  return;
+              }
+  
+              // Fill the auto-filled address and city inputs
+              document.getElementById('auto-address').value = place.formatted_address;
+              document.getElementById('auto-city').value = extractCityFromAddress(place);
+          });
+  
+          // Create the map and center it on a default location
+          const map = new google.maps.Map(document.getElementById('map'), {
+              center: { lat: 37.7749, lng: -122.4194 },
+              zoom: 12
+          });
+  
+          // Set the map to listen for changes in the autocomplete input
+          autocomplete.bindTo('bounds', map);
+      }
+  
+      // Helper function to extract the city from the place address
+      function extractCityFromAddress(place) {
+          for (const component of place.address_components) {
+              if (component.types.includes('locality')) {
+                  return component.long_name;
+              }
+          }
+          return '';
+      }
+  
+      // Call the initializeMap function when the page finishes loading
+      window.onload = initializeMap;
+  </script> -->
+
+</body>
+
+</html>
