@@ -1670,9 +1670,10 @@ opacity: 1;
 .heading-highlights{
   display: flex;
   justify-content: center;
-  flex-direction: row;
   align-items: flex-start;
+  padding-left: 30px;
 }
+
 #heading-problems{
   display: flex;
   flex-direction: row;
