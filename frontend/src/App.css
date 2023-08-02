@@ -1674,7 +1674,7 @@ opacity: 1;
   justify-content: center;
   font-size: 3rem;
   color: #e95b85;
-  margin-top: 22px;
+  margin-top: 50px;
   margin-left: 37px;
   text-align: center;
 }
@@ -1698,34 +1698,11 @@ opacity: 1;
   margin-right: 17%;
 }
 
-#sun{
-  transform: scale(0.7);
-  margin-left: 20%;
-  margin-top: -60px;
-}
+#highlight-heading{
 
-#small-stars, #small-stars1, #small-stars3{
-  height : 1.5rem;
-  width : 1.5rem;
-  animation: rotateClockwise 8s linear infinite;
-}
-
-@keyframes rotateClockwise {
-  0% {
-    transform: rotate(0deg);
-  }
-  100%{
-    transform: rotate(360deg);
-  }
-}
-
-#small-stars1{
-  margin-top: 50px;
-}
-
-#small-stars3{
-  margin-left: -5%;
-  margin-top: 72px;
+  margin-top: -40px;
+  height: 1%;
+  width:4%;
 }
 
 .handwritten{
