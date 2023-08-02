@@ -1665,9 +1665,14 @@ opacity: 1;
   background-color: /*#e95b85*/ #400885;
   overflow-x: hidden;
   margin: 0;
-  z-index: -3;
 }
 
+.heading-highlights{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: flex-start;
+}
 #heading-problems{
   display: flex;
   flex-direction: row;
@@ -1675,7 +1680,6 @@ opacity: 1;
   font-size: 3rem;
   color: #e95b85;
   margin-top: 50px;
-  margin-left: 37px;
   text-align: center;
 }
 
@@ -1693,14 +1697,12 @@ opacity: 1;
 #arrow1{
   height : 7.5rem;
   width : 7.5rem;
-  /*margin-left: 1050px;*/
-  margin-top: -35px;
-  margin-right: 17%;
+  transform: scale(0.78);
+  margin-top: 59px;
 }
 
 #highlight-heading{
-
-  margin-top: -40px;
+  margin-top: 4px;
   height: 1%;
   width:4%;
 }
