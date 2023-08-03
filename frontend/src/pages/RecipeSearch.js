@@ -41,7 +41,7 @@ const RecipeSearch = () => {
   return (
     <div className="RS-body">
       <div className="menu">
-        <div className="rs-navbar">
+        {/* <div className="rs-navbar">
           <ul>
             <Link to="/recipeSearch">
               <li className="rs-links">Recipe Search</li>
@@ -53,7 +53,7 @@ const RecipeSearch = () => {
               <li className="rs-links">Food Wastage</li>
             </Link>
           </ul>
-        </div>
+        </div> */}
         <div className="rs-content">
           <div id="recipeSearch">
             <h2>Recipe Search</h2>
