@@ -6,7 +6,6 @@ export const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    // Check if there is a token in local storage on initialization
     const token = localStorage.getItem("token");
     if (token) {
       setLoggedIn(true);
@@ -18,7 +17,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const handleLogout = () => {
-    // Clear the token from local storage on logout
     localStorage.removeItem("token");
     setLoggedIn(false);
   };

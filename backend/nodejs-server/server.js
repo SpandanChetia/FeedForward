@@ -53,6 +53,8 @@ const verifyToken = (req, res, next) => {
   );
 };
 
+
+
 // Create a schema and model for the user
 const userSchema = new mongoose.Schema({
   name: String,
