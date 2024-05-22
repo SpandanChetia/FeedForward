@@ -64,7 +64,7 @@ const Inventory = () => {
       itemCost,
       itemPurchaseDate,
       itemExpiryDate,
-      consumed: false, // Set initial consumed status to false
+      consumed: false,
     };
 
     try {
@@ -216,9 +216,10 @@ const Inventory = () => {
             fontWeight: "700",
             color: "darkSalmon",
             mt: "50px",
+            height:'90vh'
           }}
         >
-          Please log in to view the inventory.
+          Please log in to view the Inventory.
         </Typography>
       )}
     </div>

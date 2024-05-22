@@ -1486,8 +1486,10 @@ opacity: 1;
   padding: 0;
   color: #e95b85;
   font-family: "Open Sans", sans-serif;
+  height: 100vh;
+  
 }
-
+/* 
 .menu {
   display: flex;
 }
@@ -1517,13 +1519,15 @@ opacity: 1;
 .menu li:hover {
   background-color: #6633cc;
   text-decoration: none;
-}
+} */
 
 .rs-content {
   flex: 1;
   padding: 20px;
   display: grid;
   place-items: center;
+  
+  
 }
 
 /* #recipeSearch {

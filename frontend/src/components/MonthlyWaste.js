@@ -7,10 +7,8 @@ import { Bar } from "react-chartjs-2";
 const MonthlyWaste = () => {
   const { loggedIn } = useContext(AuthContext);
   const [MonthlyWaste, setMonthlyWaste] = useState([]);
-  const MONTHS=["JANUARY","FEBRUAURY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
-  const chartContainerStyle = {
-    margin: "98px"
-  };
+  const MONTHS=["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
+  
 
   useEffect(() => {
     if (loggedIn) {
@@ -86,6 +84,22 @@ const MonthlyWaste = () => {
       },
     },
   };
+
+  
+  const containerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    flexDirection: 'column',
+  };
+
+  const chartContainerStyle = {
+    width: '800px',
+    height: '400px',
+  };
+
+  
   const customs = { ...axis, ...tagname};
 
   const chartData = {
@@ -100,7 +114,7 @@ const MonthlyWaste = () => {
   };
 
   return (
-    <div className="monthly-Waste-container" style={chartContainerStyle}>
+    <div className="monthly-Waste-container" style={containerStyle}>
       {loggedIn ? (
         <div>
           <div className="monthly-waste-heading">
@@ -109,7 +123,7 @@ const MonthlyWaste = () => {
             </h1>
           </div>
           {Object.keys(MonthlyWaste).length > 0 ? (
-            <div className="monthly-wasting-chart">
+            <div className="monthly-wasting-chart" style={chartContainerStyle}>
               <Bar data={chartData} options={customs}/>
             </div>
           ) : (

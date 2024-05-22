@@ -162,9 +162,10 @@ const Waste = () => {
           fontWeight: "700",
           color: "darkSalmon",
           mt: "50px",
+          height:'90vh'
         }}
       >
-        Please log in to view the inventory.
+        Please log in to view the Waste Analysis.
       </Typography>
       )}
     </div>

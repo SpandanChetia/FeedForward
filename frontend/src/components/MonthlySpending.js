@@ -7,10 +7,11 @@ import { Line } from "react-chartjs-2";
 const MonthlySpending = () => {
   const { loggedIn } = useContext(AuthContext);
   const [monthlySpending, setMonthlySpending] = useState([]);
-  const MONTHS=["JANUARY","FEBRUAURY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
-  const chartContainerStyle = {
-    margin: "40px",
-  };
+  const [loading, setLoading] = useState(true);
+  const MONTHS = [
+    "JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
+    "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"
+  ];
 
   useEffect(() => {
     if (loggedIn) {
@@ -33,7 +34,6 @@ const MonthlySpending = () => {
 
       const data = response.data;
 
-      // Calculate monthly spending
       const spendingByMonth = {};
       data.forEach((item) => {
         const month = new Date(item.itemPurchaseDate).getMonth();
@@ -48,10 +48,13 @@ const MonthlySpending = () => {
       setMonthlySpending(spendingByMonth);
     } catch (error) {
       console.log("Error fetching monthly spending:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const tagname = {
+  const chartOptions = {
+    responsive: true,
     plugins: {
       legend: {
         labels: {
@@ -59,54 +62,59 @@ const MonthlySpending = () => {
         },
       },
     },
-  };
-
-  const axis = {
-    responsive: true,
     scales: {
       x: {
         grid: {
-          color: "rgba(255,255,255, 0.2)", 
-          borderColor: "rgba(233, 91, 133, 1)", 
-          drawBorder: true, 
-          borderWidth: 1, 
+          color: "rgba(255,255,255, 0.2)",
+          borderColor: "rgba(233, 91, 133, 1)",
+          drawBorder: true,
+          borderWidth: 1,
         },
         ticks: {
           color: "white"
         }
       },
       y: {
-        grid:{
+        grid: {
           color: "rgba(255,255,255, 0.2)",
           display: true,
         },
         ticks: {
-          color: "rgba(233, 91, 133, 1)", 
+          color: "rgba(233, 91, 133, 1)",
         }
       },
     },
   };
-  const customs = { ...axis, ...tagname};
 
   const chartData = {
-    labels: Object.keys(monthlySpending).map((month) => `${MONTHS[parseInt(month)]}`),
+    labels: MONTHS,
     datasets: [
-    {
+      {
         label: "Total Spendings in ₹",
-        data: Object.values(monthlySpending),
+        data: Array.from({ length: 12 }, (_, i) => monthlySpending[i] || 0),
         backgroundColor: "rgba(233, 91, 133, 1)",
         borderColor: "rgba(233, 91, 133, 0.8)",
         borderWidth: 2,
         pointBackgroundColor: "rgba(233, 91, 133, 0.8)"
       },
     ],
-    labelsStyle: {
-      color: "rgba(233, 91, 133, 1)",
-    },
+  };
+
+  const containerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    flexDirection: 'column',
+  };
+
+  const chartContainerStyle = {
+    width: '800px',
+    // height: '400px'
   };
 
   return (
-    <div className="monthly-spending-container">
+    <div className="monthly-spending-container" style={containerStyle}>
       {loggedIn ? (
         <div>
           <div className="monthly-spending-heading">
@@ -114,9 +122,20 @@ const MonthlySpending = () => {
               YOUR <span className="spending">MONTHLY SPENDINGS</span>
             </h1>
           </div>
-          {Object.keys(monthlySpending).length > 0 ? (
+          {loading ? (
+            <Typography
+              sx={{
+                textAlign: "center",
+                fontSize: "18px",
+                fontWeight: "500",
+                mt: "20px",
+              }}
+            >
+              Loading data...
+            </Typography>
+          ) : Object.keys(monthlySpending).length > 0 ? (
             <div className="monthly-spending-chart" style={chartContainerStyle}>
-              <Line data={chartData} options={customs}/>
+              <Line data={chartData} options={chartOptions} />
             </div>
           ) : (
             <Typography

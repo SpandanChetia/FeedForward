@@ -17,7 +17,7 @@ const MonthlyDonation = () => {
     margin: "auto", 
   };
   
-  const MONTHS=["JANUARY","FEBRUAURY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
+  const MONTHS=["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
   useEffect(() => {
     if (loggedIn) {
       fetchMonthlyDonation();

@@ -8,9 +8,7 @@ const MonthlyQuantity = () => {
   const { loggedIn } = useContext(AuthContext);
   const [monthlyQuantity, setMonthlyQuantity] = useState([]);
   const MONTHS=["JANUARY","FEBRUAURY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
-  const chartContainerStyle = {
-    margin: "40px"
-  };
+  
   useEffect(() => {
     if (loggedIn) {
       fetchMonthlyQuantity();
@@ -85,6 +83,21 @@ const MonthlyQuantity = () => {
       },
     },
   };
+
+  const containerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    flexDirection: 'column',
+  };
+
+  const chartContainerStyle = {
+    width: '800px',
+    height: '400px',
+  };
+
+
   const customs = { ...axis, ...tagname};
   const chartData = {
     labels: Object.keys(monthlyQuantity).map((month) => `${MONTHS[parseInt(month)]}`),
@@ -98,7 +111,7 @@ const MonthlyQuantity = () => {
   };
 
   return (
-    <div className="monthly-Quantity-container">
+    <div className="monthly-Quantity-container" style={containerStyle}>
       {loggedIn ? (
         <div>
           <div className="monthly-Quantity-heading">
